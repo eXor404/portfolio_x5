@@ -1,5 +1,0 @@
-/* Webfonts — loaded from Google Fonts CDN.
-   Space Grotesk = grotesque sans (display + UI). JetBrains Mono = technical/mono voice.
-   To self-host: drop the .woff2 files in /assets/fonts and replace this @import
-   with local @font-face rules. (Flagged to Maurice — provide files to self-host.) */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
