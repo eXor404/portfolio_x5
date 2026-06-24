@@ -44,10 +44,10 @@ export default function Nav() {
           </NavLink>
         ))}
         <span style={{ width: 1, height: 22, background: 'var(--line-1)', margin: '0 10px' }} />
-        <a href="https://github.com/mdaeppen" target="_blank" rel="noreferrer">
+        <a href="https://github.com/eXor404" target="_blank" rel="noreferrer">
           <IconButton label="GitHub" variant="ghost" size="sm"><Github size={18} /></IconButton>
         </a>
-        <a href="https://www.linkedin.com/in/maurice-daeppen" target="_blank" rel="noreferrer">
+        <a href="https://www.linkedin.com/in/maurice-d-ab0683397/" target="_blank" rel="noreferrer">
           <IconButton label="LinkedIn" variant="ghost" size="sm"><Linkedin size={18} /></IconButton>
         </a>
       </nav>

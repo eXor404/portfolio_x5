@@ -105,7 +105,7 @@ export const VALUES = [
 
 export const CONTACT_CHANNELS = [
   { icon: 'mail', label: 'maurice@daeppen.dev', href: 'mailto:maurice@daeppen.dev' },
-  { icon: 'github', label: 'github.com/mdaeppen', href: 'https://github.com/mdaeppen' },
-  { icon: 'linkedin', label: 'in/maurice-daeppen', href: 'https://www.linkedin.com/in/maurice-daeppen' },
+  { icon: 'github', label: 'github.com/eXor404', href: 'https://github.com/eXor404' },
+  { icon: 'linkedin', label: 'in/maurice-d', href: 'https://www.linkedin.com/in/maurice-d-ab0683397/' },
   { icon: 'key-round', label: 'PGP · 0xA1F4 9C22', href: '#' },
 ];
