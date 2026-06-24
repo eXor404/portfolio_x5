@@ -13,8 +13,9 @@ export default function Work() {
       />
 
       <section className="shell section">
-        <div className="work-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28 }}>
-          {PROJECTS.map((p) => <ProjectCard key={p.slug} p={p} featured={p.featured} />)}
+        {/* uniform 2-up grid — every project gets the identical compact card */}
+        <div className="work-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28, alignItems: 'stretch' }}>
+          {PROJECTS.map((p) => <ProjectCard key={p.slug} p={p} />)}
         </div>
       </section>
     </>
