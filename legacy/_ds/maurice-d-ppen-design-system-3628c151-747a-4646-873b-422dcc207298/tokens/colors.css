@@ -1,0 +1,93 @@
+/* ============================================================
+   COLORS — warm paper neutrals, ink, signal-orange accent
+   Swiss/International palette: off-white "bone" paper, near-black
+   ink, one hot accent. Semantic colors desaturated to sit on paper.
+   ============================================================ */
+:root {
+  /* --- Base: warm paper surfaces (light, "bone" off-white) --- */
+  --paper-0: #F6F2E9;   /* page background */
+  --paper-1: #FCFAF4;   /* raised surface / card */
+  --paper-2: #EEE8DA;   /* sunken panel / fill */
+  --paper-3: #E4DCC9;   /* deeper fill / wells */
+
+  /* --- Ink: warm near-blacks → muted grays --- */
+  --ink-0: #17150F;     /* primary text, hard lines */
+  --ink-1: #3A372D;     /* strong secondary */
+  --ink-2: #6E6A5B;     /* muted text */
+  --ink-3: #9D9885;     /* faint text / disabled */
+
+  /* --- Lines / hairlines / blueprint grid --- */
+  --line-0: #D9D3C2;    /* hairline borders */
+  --line-1: #C6BFA9;    /* stronger rules */
+  --line-blueprint: rgba(23, 21, 15, 0.07); /* faint engineering grid */
+
+  /* --- Accent: signal orange --- */
+  --accent: #F24E16;        /* primary accent */
+  --accent-strong: #D33D0B; /* hover / press */
+  --accent-soft: #FBDCC6;   /* fills, chips */
+  --accent-tint: #FCEFE3;   /* very light bg wash */
+  --accent-ink: #7A2A0A;    /* text on soft */
+
+  /* --- Semantic (desaturated, paper-friendly) --- */
+  --ok: #3F7D54;        --ok-soft: #DCEBDD;
+  --warn: #C2861B;      --warn-soft: #F4E6C5;
+  --danger: #C23A2B;    --danger-soft: #F3D7D0;
+  --info: #2E6B8F;      --info-soft: #D5E4ED;
+
+  /* ============================================================
+     SEMANTIC ALIASES — reference these in components, not raw values
+     ============================================================ */
+  --text-primary: var(--ink-0);
+  --text-secondary: var(--ink-2);
+  --text-muted: var(--ink-3);
+  --text-on-accent: #FCFAF4;
+  --text-accent: var(--accent);
+
+  --surface-page: var(--paper-0);
+  --surface-card: var(--paper-1);
+  --surface-sunken: var(--paper-2);
+  --surface-well: var(--paper-3);
+  --surface-ink: var(--ink-0);
+  --surface-accent: var(--accent);
+
+  --border-hairline: var(--line-0);
+  --border-strong: var(--line-1);
+  --border-ink: var(--ink-0);
+  --border-accent: var(--accent);
+
+  --focus-ring: var(--accent);
+}
+
+/* ============================================================
+   DARK — terminal / hacker-adjacent variant (exploratory).
+   Apply with <html data-theme="dark"> or [data-theme="dark"] scope.
+   ============================================================ */
+[data-theme="dark"] {
+  --paper-0: #121110;
+  --paper-1: #1B1A17;
+  --paper-2: #242219;
+  --paper-3: #2E2B20;
+
+  --ink-0: #F2EEE2;
+  --ink-1: #D7D2C2;
+  --ink-2: #A29D8C;
+  --ink-3: #6E6A5B;
+
+  --line-0: #322F26;
+  --line-1: #45413300;
+  --line-1: #454133;
+  --line-blueprint: rgba(242, 238, 226, 0.06);
+
+  --accent: #FF6A2C;
+  --accent-strong: #FF834E;
+  --accent-soft: #3A2415;
+  --accent-tint: #221710;
+  --accent-ink: #FFC9A8;
+
+  --ok: #6FB984;        --ok-soft: #1E2A20;
+  --warn: #E0AE51;      --warn-soft: #2C2412;
+  --danger: #E07163;    --danger-soft: #2C1A16;
+  --info: #6BA8C9;      --info-soft: #15242C;
+
+  --text-on-accent: #121110;
+}

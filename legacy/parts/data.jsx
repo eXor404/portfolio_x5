@@ -1,0 +1,81 @@
+/* Shared content data + hero copy. Assigned to window so every page + the
+   home teasers read from one source. */
+window.HERO = {
+  kicker: 'Fullstack · DevOps · Security · AI',
+  tagline: "I build and secure resilient systems — from CI/CD pipelines to zero-trust gateways — and I think hard about how they break.",
+  stack: ['Go', 'Rust', 'Kubernetes', 'Terraform', 'OPA', 'TypeScript', 'Postgres', 'eBPF'],
+};
+
+window.PROJECTS = [
+  {
+    n: '01', title: 'Sentinel', tagline: 'Zero-trust API gateway',
+    blurb: 'Identity-aware proxy enforcing mTLS + OPA policy across a 40-service mesh. Policy-as-code, signed images, full audit trail.',
+    tags: ['Go', 'Kubernetes', 'OPA', 'mTLS', 'Envoy'],
+    specs: [{ key: 'Role', value: 'Lead' }, { key: 'Scale', value: '40 svc' }, { key: 'Year', value: '2025' }],
+    featured: true,
+  },
+  {
+    n: '02', title: 'Forge CI', tagline: 'Self-hosted CI/CD platform',
+    blurb: 'Reproducible pipelines on Nix + Rust runners. Hermetic builds, sub-second cache hits.',
+    tags: ['Rust', 'Nix', 'Docker'],
+    specs: [{ key: 'Role', value: 'Author' }, { key: 'Year', value: '2024' }],
+  },
+  {
+    n: '03', title: 'Vault Recon', tagline: 'Secrets & threat scanner',
+    blurb: 'STRIDE automation wired into CI. Catches leaked keys and model drift before merge.',
+    tags: ['Python', 'OWASP', 'GitHub Actions'],
+    specs: [{ key: 'Role', value: 'Author' }, { key: 'Year', value: '2023' }],
+  },
+  {
+    n: '04', title: 'Aether', tagline: 'Real-time observability',
+    blurb: 'Streaming metrics dashboard over eBPF probes. p99 latency surfaced in 200ms.',
+    tags: ['TypeScript', 'React', 'eBPF', 'Grafana'],
+    specs: [{ key: 'Role', value: 'Fullstack' }, { key: 'Year', value: '2023' }],
+  },
+];
+
+window.ARTICLES = [
+  {
+    n: '01', date: '2026 · 04', read: '11 min',
+    title: 'Zero-trust without slowing the team down',
+    blurb: 'mTLS, OPA, and an identity-aware proxy — shipped across 40 services without turning every deploy into a security review.',
+    tags: ['Security', 'mTLS', 'OPA'],
+  },
+  {
+    n: '02', date: '2026 · 02', read: '8 min',
+    title: 'Hermetic builds with Nix: a field report',
+    blurb: 'What it actually took to make our CI reproducible bit-for-bit — and the sub-second cache hits that paid for the migration.',
+    tags: ['Nix', 'CI/CD', 'Rust'],
+  },
+  {
+    n: '03', date: '2025 · 11', read: '6 min',
+    title: 'Threat modeling as a daily habit',
+    blurb: 'STRIDE is not a quarterly workshop. Here is how I wired it into pull requests so the question "how does this break?" gets asked every time.',
+    tags: ['STRIDE', 'AppSec', 'Culture'],
+  },
+];
+
+window.TIMELINE = [
+  { year: '2025', role: 'Senior DevOps Engineer', org: 'Helvetia Cloud', loc: 'Bern',
+    blurb: 'Lead the platform team. Cut deploy time 8×, drove zero-trust rollout across 40 services.',
+    tags: ['Kubernetes', 'Go', 'OPA'], now: true },
+  { year: '2022', role: 'Fullstack Engineer', org: 'Nimbus Labs', loc: 'Remote',
+    blurb: 'Owned product from Postgres to React. Shipped the billing + auth rewrite.',
+    tags: ['TypeScript', 'React', 'Rust'] },
+  { year: '2020', role: 'Security Analyst', org: 'CERT-CH', loc: 'Bern',
+    blurb: 'Incident response and threat modeling. Built the internal STRIDE tooling.',
+    tags: ['Python', 'OWASP', 'Forensics'] },
+];
+
+window.SKILLS = {
+  'Backend': ['Go', 'Rust', 'Node', 'Postgres', 'gRPC'],
+  'Infra / DevOps': ['Kubernetes', 'Terraform', 'Nix', 'ArgoCD', 'AWS'],
+  'Security': ['Threat modeling', 'mTLS', 'OPA', 'OWASP', 'eBPF'],
+  'Frontend': ['TypeScript', 'React', 'Vite'],
+};
+
+window.LANGUAGES = [
+  { lang: 'German', level: 'Native' },
+  { lang: 'English', level: 'Fluent' },
+  { lang: 'French', level: 'Conversational' },
+];

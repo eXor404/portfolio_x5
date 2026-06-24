@@ -1,0 +1,33 @@
+/* ============================================================
+   SPACING — 4px base grid. Swiss layout lives on a strict grid.
+   ============================================================ */
+:root {
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+  --space-40: 160px;
+  --space-48: 192px;
+
+  /* --- Layout --- */
+  --gutter: 24px;            /* column gutter */
+  --margin-page: 32px;       /* page side margin (mobile) */
+  --margin-page-lg: 64px;    /* page side margin (desktop) */
+  --maxw-prose: 68ch;        /* readable measure */
+  --maxw-content: 1080px;
+  --maxw-wide: 1440px;
+
+  --grid-cols: 12;           /* @kind other */
+  --grid-unit: 8px;          /* baseline unit */
+  --blueprint-cell: 24px;    /* engineering grid cell */
+}
