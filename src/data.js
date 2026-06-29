@@ -7,7 +7,7 @@ export const PROFILE = {
   location: 'Bern — CH',
   coords: '46.9480° N · 7.4474° E',
   availability: 'Open to work',
-  stack: ['Go', 'Rust', 'Kubernetes', 'Terraform', 'OPA', 'TypeScript', 'Postgres', 'eBPF'],
+  stack: ['Java', 'Quarkus', 'React', 'Kubernetes', 'Docker', 'ArgoCD', 'Keycloak', 'Postgres'],
 };
 
 /* Route table — drives the Nav, footer, and per-page <PageHeader> paths. */
@@ -85,10 +85,15 @@ export const TIMELINE = [
 ];
 
 export const SKILLS = {
-  'Backend': ['Go', 'Rust', 'Node', 'Postgres', 'gRPC'],
-  'Infra / DevOps': ['Kubernetes', 'Terraform', 'Nix', 'ArgoCD', 'AWS'],
-  'Security': ['Threat modeling', 'mTLS', 'OPA', 'OWASP', 'eBPF'],
-  'Frontend': ['TypeScript', 'React', 'Vite'],
+  'Backend': ['Java', 'Quarkus', 'Hibernate / Panache', 'Maven / Gradle', 'REST APIs'],
+  'Frontend': ['React', 'Next.js', 'Angular', 'Astro', 'Three.js', 'Tailwind CSS', 'Vite'],
+  'Testing': ['JUnit', 'Mockito', 'ts-mockito', 'Jest'],
+  'DevOps / Infra': ['Docker', 'Kubernetes', 'Helm', 'ArgoCD', 'GitHub Actions', 'GitLab CI'],
+  'Data': ['PostgreSQL', 'MySQL', 'MongoDB'],
+  'Edge / Proxy': ['Traefik', 'Nginx', 'Caddy'],
+  'Security / Auth': ['Keycloak', 'OAuth2 / OIDC', 'TLS'],
+  'Observability': ['Prometheus', 'Grafana', 'Splunk'],
+  'AI / Tooling': ['LLM-assisted dev', 'Vibe coding', 'OpenAI API', 'Anthropic / Claude API', 'Prompt engineering'],
 };
 
 export const LANGUAGES = [
