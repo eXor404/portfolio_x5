@@ -78,7 +78,7 @@ export default function Home() {
         }}>
           <div style={{ flex: '1 1 360px', minWidth: 0 }}>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 16 }}>
-              Open to work
+              Open to interesting work
             </div>
             <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(32px, 4.5vw, 60px)', lineHeight: 1.0, letterSpacing: '-0.035em', color: 'var(--ink-0)' }}>
               Let's build something<br /><RotatingWord />

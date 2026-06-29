@@ -15,7 +15,7 @@ export default function Contact() {
       <PageHeader
         index="05" path="/contact" title="Get in " accentWord="touch."
         lead="Hiring, collaborating, or just want to compare notes on breaking systems? The inbox is open."
-        meta={[['Status', 'Open to work'], ['Reply', '< 48h'], ['Base', 'Bern, CH']]}
+        meta={[['Status', 'Open to interesting work'], ['Reply', '< 48h'], ['Base', 'Bern, CH']]}
       />
 
       <section className="shell section">
@@ -25,7 +25,7 @@ export default function Contact() {
               Let's build<br />something<br /><RotatingWord />
             </h2>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginTop: 28 }}>
-              <Badge tone="ok" solid>Open to work</Badge>
+              <Badge tone="ok" solid>Open to interesting work</Badge>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--ink-2)' }}>Replies &lt; 48h</span>
             </div>
             <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 2, borderTop: '1.5px solid var(--ink-0)' }}>

@@ -32,7 +32,7 @@ export default function Footer() {
           <span>© 2026 Maurice Däppen</span>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--ok)' }} />
-            Open to work · Bern, CH
+            Open to interesting work · Bern, CH
           </span>
           <button onClick={scrollTop} style={{
             background: 'none', border: 'none', cursor: 'pointer', color: 'var(--ink-2)',

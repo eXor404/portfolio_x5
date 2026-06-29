@@ -6,7 +6,7 @@ export const PROFILE = {
   tagline: "I build and secure resilient systems end to end, from idea and architecture to CI/CD, hosting, and keeping them reliable in production.",
   location: 'Bern — CH',
   coords: '46.9425° N · 7.4439° E',
-  availability: 'Open to work',
+  availability: 'Open to interesting work',
   stack: ['Java', 'Quarkus', 'React', 'Kubernetes', 'Docker', 'ArgoCD', 'Keycloak', 'Postgres'],
 };
 
@@ -109,7 +109,6 @@ export const VALUES = [
 ];
 
 export const CONTACT_CHANNELS = [
-  { icon: 'mail', label: 'maurice@daeppen.dev', href: 'mailto:maurice@daeppen.dev' },
   { icon: 'github', label: 'github.com/eXor404', href: 'https://github.com/eXor404' },
   { icon: 'linkedin', label: 'in/maurice-d', href: 'https://www.linkedin.com/in/maurice-d-ab0683397/' },
   { icon: 'key-round', label: 'PGP · 0xA1F4 9C22', href: '#' },

@@ -21,7 +21,7 @@ export default function About() {
       <PageHeader
         index="04" path="/about" title="About" accentWord="."
         lead="A fullstack and DevOps engineer who treats security as a design constraint, not an afterthought."
-        meta={[['Based', 'Bern, CH'], ['Exp', '7 yrs'], ['Status', 'Open to work']]}
+        meta={[['Based', 'Bern, CH'], ['Exp', '7 yrs'], ['Status', 'Open to interesting work']]}
       />
 
       <section className="shell section">
