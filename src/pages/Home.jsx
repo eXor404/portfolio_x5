@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import Hero from '../components/Hero.jsx';
 import ProjectCard from '../components/ProjectCard.jsx';
-import { SectionLabel, Tag, Button } from '../ds/index.js';
+import { SectionLabel, Tag, Button, RotatingWord } from '../ds/index.js';
 import { PROJECTS, ARTICLES } from '../data.js';
 
 function MoreLink({ to, children }) {
@@ -76,15 +76,15 @@ export default function Home() {
           padding: 'clamp(36px, 6vw, 72px)', display: 'flex', flexWrap: 'wrap', gap: 32,
           alignItems: 'center', justifyContent: 'space-between',
         }}>
-          <div>
+          <div style={{ flex: '1 1 360px', minWidth: 0 }}>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 16 }}>
               Open to work
             </div>
             <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(32px, 4.5vw, 60px)', lineHeight: 1.0, letterSpacing: '-0.035em', color: 'var(--ink-0)' }}>
-              Let's build something <span style={{ color: 'var(--accent)' }}>solid.</span>
+              Let's build something<br /><RotatingWord />
             </h2>
           </div>
-          <Link to="/contact">
+          <Link to="/contact" style={{ flex: '0 0 auto' }}>
             <Button variant="accent" size="lg" iconRight={<ArrowRight size={18} />}>Get in touch</Button>
           </Link>
         </div>

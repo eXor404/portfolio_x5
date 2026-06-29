@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Mail, Github, Linkedin, KeyRound, ArrowUpRight, Send, CheckCircle2 } from 'lucide-react';
 import PageHeader from '../components/PageHeader.jsx';
-import { Input, TextArea, Button, Badge } from '../ds/index.js';
+import { Input, TextArea, Button, Badge, RotatingWord } from '../ds/index.js';
 import { CONTACT_CHANNELS } from '../data.js';
 
 const ICONS = { mail: Mail, github: Github, linkedin: Linkedin, 'key-round': KeyRound };
@@ -22,7 +22,7 @@ export default function Contact() {
         <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(40px, 6vw, 88px)', alignItems: 'start' }}>
           <div>
             <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(44px, 6vw, 84px)', lineHeight: 0.96, letterSpacing: '-0.04em', color: 'var(--ink-0)' }}>
-              Let's build<br />something<br /><span style={{ color: 'var(--accent)' }}>solid.</span>
+              Let's build<br />something<br /><RotatingWord />
             </h2>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginTop: 28 }}>
               <Badge tone="ok" solid>Open to work</Badge>
