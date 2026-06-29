@@ -17,10 +17,13 @@ export default function About() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
             <div className="bp-grid" style={{
               position: 'relative', aspectRatio: '4 / 5', border: '1.5px solid var(--ink-0)',
-              background: 'var(--paper-2)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+              background: 'var(--paper-2)', overflow: 'hidden',
             }}>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ink-3)' }}>Portrait</span>
-              <span style={{ position: 'absolute', bottom: 10, left: 12, fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--ink-3)', letterSpacing: '0.08em' }}>IMG / 0.8MP</span>
+              <img
+                src="/maurice.jpg" alt="Maurice Däppen"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%', display: 'block' }}
+              />
+              <span style={{ position: 'absolute', bottom: 10, left: 12, fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--paper-0)', letterSpacing: '0.08em', mixBlendMode: 'difference' }}>IMG / 0.8MP</span>
             </div>
             <Card variant="ink" style={{ padding: 18 }}>
               <SpecList items={[
@@ -28,7 +31,7 @@ export default function About() {
                 { key: 'Exp', value: '7 yrs' },
                 { key: 'Langs', value: 'DE · EN · FR' },
                 { key: 'Status', value: 'Open' },
-              ]} dense />
+              ]} dense inverted />
             </Card>
           </div>
 
