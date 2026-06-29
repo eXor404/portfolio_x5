@@ -24,7 +24,7 @@ export default function About() {
         meta={[['Based', 'Bern, CH'], ['Exp', '7 yrs'], ['Status', 'Open to interesting work']]}
       />
 
-      <section className="shell section">
+      <section className="shell section" style={{ paddingTop: 'clamp(48px, 7vh, 88px)' }}>
         <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '300px 1fr', gap: 'clamp(40px, 6vw, 88px)', alignItems: 'start' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
             <div className="bp-grid" style={{

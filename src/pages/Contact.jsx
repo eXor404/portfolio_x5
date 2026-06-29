@@ -18,7 +18,7 @@ export default function Contact() {
         meta={[['Status', 'Open to interesting work'], ['Reply', '< 48h'], ['Base', 'Bern, CH']]}
       />
 
-      <section className="shell section">
+      <section className="shell section" style={{ paddingTop: 'clamp(48px, 7vh, 88px)' }}>
         <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(40px, 6vw, 88px)', alignItems: 'start' }}>
           <div>
             <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(44px, 6vw, 84px)', lineHeight: 0.96, letterSpacing: '-0.04em', color: 'var(--ink-0)' }}>

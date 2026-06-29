@@ -13,7 +13,7 @@ export default function Experience() {
         meta={[['Span', '2020 – Now'], ['Base', 'Bern, CH'], ['Mode', 'Hybrid · Remote']]}
       />
 
-      <section className="shell section bp-dots">
+      <section className="shell section bp-dots" style={{ paddingTop: 'clamp(48px, 7vh, 88px)' }}>
         <div style={{ position: 'relative' }}>
           {TIMELINE.map((e, i) => (
             <div key={e.year} className="tl-row" style={{ display: 'grid', gridTemplateColumns: '140px 1fr', gap: 36, position: 'relative' }}>

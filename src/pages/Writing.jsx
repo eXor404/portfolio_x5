@@ -19,7 +19,7 @@ export default function Writing() {
         meta={[['Entries', String(ARTICLES.length).padStart(2, '0')], ['Cadence', 'Monthly-ish'], ['Topic', topic]]}
       />
 
-      <section className="shell section">
+      <section className="shell section" style={{ paddingTop: 'clamp(48px, 7vh, 88px)' }}>
         {/* topic filter rail */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 18, flexWrap: 'wrap', marginBottom: 8 }}>
           <SectionLabel index="·" rule={false}>Filter</SectionLabel>
