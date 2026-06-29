@@ -21,7 +21,7 @@ export default function About() {
       <PageHeader
         index="04" path="/about" title="About" accentWord="."
         lead="A fullstack and DevOps engineer who treats security as a design constraint, not an afterthought."
-        meta={[['Based', 'Bern, CH'], ['Exp', '7 yrs'], ['Status', 'Open to interesting work']]}
+        meta={[['Based', 'Bern, CH'], ['Exp', '5+ yrs'], ['Status', 'Employed · open to interesting work']]}
       />
 
       <section className="shell section" style={{ paddingTop: 'clamp(48px, 7vh, 88px)' }}>
@@ -40,9 +40,9 @@ export default function About() {
             <Card variant="ink" style={{ padding: 18 }}>
               <SpecList items={[
                 { key: 'Based', value: 'Bern, CH' },
-                { key: 'Exp', value: '7 yrs' },
+                { key: 'Exp', value: '5+ yrs' },
                 { key: 'Langs', value: 'DE · EN · FR' },
-                { key: 'Status', value: 'Open' },
+                { key: 'Status', value: 'Employed, open' },
               ]} dense inverted />
             </Card>
           </div>
@@ -52,7 +52,7 @@ export default function About() {
               I'm a fullstack and DevOps engineer who treats security as a design constraint, not an afterthought.
             </p>
             <p style={{ margin: '22px 0 0', fontSize: 16, lineHeight: 1.6, color: 'var(--ink-2)', maxWidth: '58ch' }}>
-              Seven years spanning incident response, platform engineering, and product. I like the seam where
+              Over five years spanning incident response, platform engineering, and product. I like the seam where
               reliability meets adversarial thinking — the questions that start with “what happens when this fails,
               and who's trying to make it fail?”
             </p>

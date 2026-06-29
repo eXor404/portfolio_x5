@@ -30,7 +30,7 @@ export default function Home() {
           A few systems I designed, shipped, and kept alive in production.
         </p>
         <div className="work-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28 }}>
-          {PROJECTS.slice(0, 3).map((p) => <ProjectCard key={p.n} p={p} featured={p.featured} />)}
+          {[...PROJECTS.slice(0, 3), PROJECTS.find((p) => p.slug === 'mirage')].map((p) => <ProjectCard key={p.slug} p={p} />)}
         </div>
         <div style={{ marginTop: 56, display: 'flex', justifyContent: 'flex-end' }}>
           <MoreLink to="/work">View all projects</MoreLink>
