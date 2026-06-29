@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 
 export default function RotatingWord({
-  words = ['solid', 'secure', 'fast', 'elegant', 'bold', 'stunning', 'great', 'innovative', 'performant', 'scalable', 'seamless', 'original'],
+  words = ['solid', 'stunning', 'fast', 'unique', 'secure', 'elegant', 'scalable', 'innovative', 'great', 'bold', 'performant', 'original', 'seamless'],
   interval = 1300,
   style = {},
 }) {
