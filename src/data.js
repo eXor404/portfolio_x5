@@ -5,7 +5,7 @@ export const PROFILE = {
   role: 'Fullstack · DevOps · Security · AI',
   tagline: "I build and secure resilient systems end to end, from idea and architecture to CI/CD, hosting, and keeping them reliable in production.",
   location: 'Bern — CH',
-  coords: '46.9480° N · 7.4474° E',
+  coords: '46.9425° N · 7.4439° E',
   availability: 'Open to work',
   stack: ['Java', 'Quarkus', 'React', 'Kubernetes', 'Docker', 'ArgoCD', 'Keycloak', 'Postgres'],
 };
