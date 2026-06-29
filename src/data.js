@@ -3,7 +3,7 @@
 export const PROFILE = {
   name: 'Maurice Däppen',
   role: 'Fullstack · DevOps · Security · AI',
-  tagline: "I build and secure resilient systems — from CI/CD pipelines to zero-trust gateways — and I think hard about how they break.",
+  tagline: "I build and secure resilient systems end to end, from idea and architecture to CI/CD, hosting, and keeping them reliable in production.",
   location: 'Bern — CH',
   coords: '46.9480° N · 7.4474° E',
   availability: 'Open to work',
