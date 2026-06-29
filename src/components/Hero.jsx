@@ -19,7 +19,7 @@ export default function Hero() {
           <span>{PROFILE.location}</span>
         </div>
 
-        <div style={{ marginTop: 'clamp(64px, 12vh, 132px)' }}>
+        <div style={{ marginTop: 'clamp(43px, 8vh, 88px)' }}>
           <div className="reveal" style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--ink-2)', letterSpacing: '0.06em', marginBottom: 26, animationDelay: '60ms' }}>
             {PROFILE.role}
           </div>
@@ -50,7 +50,11 @@ export default function Hero() {
                   Stack
                 </div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                  {PROFILE.stack.map((t) => <Tag key={t} size="sm">{t}</Tag>)}
+                  {PROFILE.stack.map((t) => (
+                    <Link key={t} to="/about#stack" className="stack-chip" aria-label={`${t} — view full stack`}>
+                      <Tag size="sm" style={{ cursor: 'pointer' }}>{t}</Tag>
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>

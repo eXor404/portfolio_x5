@@ -123,6 +123,11 @@ h1, h2, h3, h4, p { margin: 0; }
 .article-row:hover { background: color-mix(in srgb, var(--paper-2) 55%, transparent); }
 .article-row:hover .article-title { color: var(--accent); }
 
+/* clickable hero stack chips → /about#stack */
+.stack-chip { display: inline-flex; transition: transform var(--dur-fast) ease; }
+.stack-chip:hover { transform: translateY(-2px); }
+.stack-chip:hover > span { color: var(--accent-ink); background: var(--accent-soft); }
+
 /* generic link-underline reveal */
 .ul-link { position: relative; }
 .ul-link::after {

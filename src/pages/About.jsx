@@ -1,9 +1,21 @@
 /* /about — portrait + bio + values + skills matrix + languages. */
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import PageHeader from '../components/PageHeader.jsx';
 import { Card, Tag, SpecList, Annotation } from '../ds/index.js';
 import { SKILLS, LANGUAGES, VALUES } from '../data.js';
 
 export default function About() {
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (hash !== '#stack') return;
+    // Runs after Layout's scroll-to-top reset, so the smooth scroll wins.
+    const id = requestAnimationFrame(() => {
+      document.getElementById('stack')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    return () => cancelAnimationFrame(id);
+  }, [hash]);
+
   return (
     <>
       <PageHeader
@@ -55,7 +67,7 @@ export default function About() {
               ))}
             </div>
 
-            <Annotation label="Stack matrix" tone="accent" corner="tl" style={{ marginTop: 48 }}>
+            <Annotation id="stack" label="Stack matrix" tone="accent" corner="tl" style={{ marginTop: 48, scrollMarginTop: 100 }}>
               <div className="skill-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28 }}>
                 {Object.entries(SKILLS).map(([group, items]) => (
                   <div key={group}>
