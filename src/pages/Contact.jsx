@@ -1,5 +1,5 @@
 /* /contact — split invite + channels left, interactive form right. */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Mail, Github, Linkedin, KeyRound, ArrowUpRight, Send, CheckCircle2 } from 'lucide-react';
 import PageHeader from '../components/PageHeader.jsx';
 import { Input, TextArea, Button, Badge, RotatingWord } from '../ds/index.js';
@@ -9,6 +9,15 @@ const ICONS = { mail: Mail, github: Github, linkedin: Linkedin, 'key-round': Key
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
+  // Shorten the subject placeholder on phones so it doesn't get clipped.
+  const [isNarrow, setIsNarrow] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 540px)');
+    const sync = () => setIsNarrow(mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
 
   return (
     <>
@@ -60,7 +69,7 @@ export default function Contact() {
                   <Input label="Name" placeholder="Pete Mitchell" required />
                   <Input label="Email" type="email" placeholder="you@domain.com" required />
                 </div>
-                <Input label="Subject" placeholder="You seem pretty awesome, wanna connect? :D" />
+                <Input label="Subject" placeholder={isNarrow ? 'You seem pretty awesome' : 'You seem pretty awesome, wanna connect? :D'} />
                 <TextArea label="Message" rows={5} placeholder="How's it going?" required />
                 <Button variant="accent" size="lg" full type="submit" iconRight={<Send size={17} />}>
                   Send message
