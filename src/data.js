@@ -115,16 +115,35 @@ export const ARTICLES = [
   },
 ];
 
+/* Timeline entries group by org. A single-role org renders as one node; an org
+   with multiple `roles` (e.g. a military career) stacks them on a nested spine,
+   LinkedIn-style. `year` is the headline year shown on the left rail; `end`
+   renders a small trailing year for multi-role spans. */
 export const TIMELINE = [
-  { year: '2025', role: 'Senior DevOps Engineer', org: 'Helvetia Cloud', loc: 'Bern',
-    blurb: 'Lead the platform team. Cut deploy time 8×, drove zero-trust rollout across 40 services.',
-    tags: ['Kubernetes', 'Go', 'OPA'], now: true },
-  { year: '2022', role: 'Fullstack Engineer', org: 'Nimbus Labs', loc: 'Remote',
-    blurb: 'Owned product from Postgres to React. Shipped the billing + auth rewrite.',
-    tags: ['TypeScript', 'React', 'Rust'] },
-  { year: '2020', role: 'Security Analyst', org: 'CERT-CH', loc: 'Bern',
-    blurb: 'Incident response and threat modeling. Built the internal STRIDE tooling.',
-    tags: ['Python', 'OWASP', 'Forensics'] },
+  { year: '2026', org: 'Swiss Armed Forces', loc: 'Bern', mode: 'On-site', now: true,
+    roles: [
+      { role: 'Sergeant', period: 'Jun 2026 – Now',
+        blurb: 'Sergeant (OR-5), Signals Reconnaissance Sensor Analyst. Squad-level cadre responsible for training and supervising recruits in radio reconnaissance sensor operation and signal evaluation.',
+        tags: ['Leadership', 'Signals Intel', 'Training'] },
+      { role: 'NCO School', period: 'May 2026 – Jun 2026',
+        blurb: 'Advanced non-commissioned officer training in leadership and small-unit command, including promotion to Sergeant (OR-5).',
+        tags: ['Command', 'Leadership'] },
+      { role: 'Strategic Radio Reconnaissance', period: 'Feb 2026 – May 2026',
+        blurb: 'Soldier, Private (OR-2), specialist training in strategic radio reconnaissance and signal monitoring.',
+        tags: ['Signals Intel', 'Recon'] },
+      { role: 'Radio Relay & Switchboard Operator', period: 'Jan 2026 – Feb 2026',
+        blurb: 'Recruit (OR-1), foundational training in tactical communications: directional line-of-sight radio links and communications relay / switchboard operation.',
+        tags: ['Tactical Comms', 'Fieldcraft'] },
+    ] },
+  { year: '2021', end: '2026', org: 'IMS Software', loc: 'Bern', mode: 'Hybrid',
+    roles: [
+      { role: 'Fullstack Software Engineer', period: 'Aug 2025 – Jan 2026',
+        blurb: 'Building business web applications in an agile Scrum team, primarily Java / Quarkus on the backend and Angular on the frontend. Delivered features for cantonal road-traffic office systems and a major insurance provider. Mentored apprentices while earning my Berufsbildner certification.',
+        tags: ['Java', 'Quarkus', 'Angular', 'Scrum'] },
+      { role: 'Apprenticeship, Software Engineer EFZ', period: 'Aug 2021 – Jul 2025',
+        blurb: 'Four-year federal apprenticeship (EFZ / CFC). Full-stack foundations across backend and frontend development in a professional team.',
+        tags: ['Java', 'Angular', 'Web'] },
+    ] },
 ];
 
 export const SKILLS = {
