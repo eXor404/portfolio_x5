@@ -17,9 +17,9 @@ export default function PageHeader({ index, path, title, accentWord, lead, meta 
           <span style={{ color: 'var(--accent)' }}>~{path}</span>
         </nav>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 'clamp(20px, 4vw, 48px)', alignItems: 'end' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 'clamp(20px, 4vw, 48px)', alignItems: 'baseline' }}>
           <span className="reveal" style={{
-            fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: 'clamp(40px, 7vw, 96px)',
+            fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: 'clamp(34px, 6vw, 80px)',
             lineHeight: 0.8, color: 'var(--line-1)', letterSpacing: '-0.02em',
             animationDelay: '60ms',
           }}>{index}</span>
