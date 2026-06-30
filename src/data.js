@@ -142,13 +142,24 @@ export const SKILLS = {
 export const LANGUAGES = [
   { lang: 'German', level: 'Native' },
   { lang: 'English', level: 'Fluent' },
-  { lang: 'French', level: 'Conversational' },
+  { lang: 'French', level: 'Basics' },
+  { lang: 'Spanish', level: 'Basics' },
 ];
 
 export const VALUES = [
   { k: 'Reliability', v: 'Systems that fail loud, recover fast, and never surprise the on-call.' },
   { k: 'Adversarial', v: 'Every design gets the question: who is trying to make this break, and how?' },
   { k: 'Reproducible', v: 'If it only builds on your machine, it does not build. Hermetic or nothing.' },
+];
+
+// "Off the clock" — the human side
+export const INTERESTS = [
+  { k: 'Side projects', v: 'Always building something small after hours, just to see if I can.' },
+  { k: 'Gaming', v: 'Co-op nights with friends, with a soft spot for old retro titles.' },
+  { k: 'Gym', v: 'Lifting to clear my head and stay sharp.' },
+  { k: 'Cooking', v: 'Chasing the perfect plate of really good food.' },
+  { k: 'Art', v: 'Modern paintings and sketches, and I make my own.' },
+  { k: 'Travel', v: 'New cities, new places, new perspectives.' },
 ];
 
 export const CONTACT_CHANNELS = [

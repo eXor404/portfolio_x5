@@ -150,6 +150,23 @@ h1, h2, h3, h4, p { margin: 0; }
   .tl-row { grid-template-columns: 64px 1fr !important; gap: 20px !important; }
 }
 
+/* ---------- "off the clock" interest grid (responsive borders) ---------- */
+/* Container draws the outer top + left; every cell draws its right + bottom.
+   This closes the grid correctly for any column count, no per-cell special cases. */
+.interest-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1.5px solid var(--ink-0);
+  border-left: 1px solid var(--line-0);
+}
+.interest-cell {
+  padding: 26px 24px;
+  border-right: 1px solid var(--line-0);
+  border-bottom: 1px solid var(--line-0);
+}
+@media (max-width: 860px) { .interest-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 540px) { .interest-grid { grid-template-columns: 1fr; } }
+
 /* ---------- staggered page-load reveal ---------- */
 @keyframes riseIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 .reveal { opacity: 0; animation: riseIn 0.6s var(--ease-swiss) forwards; }
