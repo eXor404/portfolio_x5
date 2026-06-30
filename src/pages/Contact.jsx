@@ -69,7 +69,7 @@ export default function Contact() {
                   <Input label="Name" placeholder="Pete Mitchell" required />
                   <Input label="Email" type="email" placeholder="you@domain.com" required />
                 </div>
-                <Input label="Subject" placeholder={isNarrow ? 'You seem pretty awesome' : 'You seem pretty awesome, wanna connect? :D'} />
+                <Input label="Subject" placeholder={isNarrow ? 'You seem pretty awesome :D' : 'You seem pretty awesome, wanna connect? :D'} />
                 <TextArea label="Message" rows={5} placeholder="How's it going?" required />
                 <Button variant="accent" size="lg" full type="submit" iconRight={<Send size={17} />}>
                   Send message
