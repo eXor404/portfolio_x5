@@ -1,11 +1,31 @@
 /* Nav — sticky top bar. Monogram + wordmark link home; mono section links use
-   React Router NavLink so the active route is accent-highlighted. */
-import { Link, NavLink } from 'react-router-dom';
-import { Github, Linkedin } from 'lucide-react';
+   React Router NavLink so the active route is accent-highlighted. On narrow
+   screens the inline links collapse into a hamburger that opens a full-screen
+   editorial overlay menu. */
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Github, Linkedin, Menu, X } from 'lucide-react';
 import { ROUTES } from '../data.js';
 import { IconButton } from '../ds/index.js';
 
 export default function Nav() {
+  const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
+
+  // Close the overlay whenever the route changes (link tapped, back button).
+  useEffect(() => { setOpen(false); }, [pathname]);
+
+  // Lock body scroll + allow Esc to dismiss while the overlay is open.
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
+    window.addEventListener('keydown', onKey);
+    return () => { document.body.style.overflow = prev; window.removeEventListener('keydown', onKey); };
+  }, [open]);
+
   return (
     <header style={{
       position: 'sticky', top: 0, zIndex: 50,
@@ -28,6 +48,7 @@ export default function Nav() {
         </span>
       </Link>
 
+      {/* desktop inline links */}
       <nav className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         {ROUTES.map((l) => (
           <NavLink key={l.id} to={l.path} style={({ isActive }) => ({
@@ -51,6 +72,81 @@ export default function Nav() {
           <IconButton label="LinkedIn" variant="ghost" size="sm"><Linkedin size={18} /></IconButton>
         </a>
       </nav>
+
+      {/* mobile hamburger — only shown where .nav-links is hidden (<=720px) */}
+      <button
+        type="button"
+        className="nav-burger"
+        aria-label="Open menu"
+        aria-expanded={open}
+        onClick={() => setOpen(true)}
+        style={{
+          display: 'none', alignItems: 'center', justifyContent: 'center',
+          width: 44, height: 44, border: '1.5px solid var(--ink-0)', background: 'transparent',
+          color: 'var(--ink-0)', cursor: 'pointer',
+        }}
+      >
+        <Menu size={20} />
+      </button>
+
+      {/* full-screen overlay menu — portaled to <body> so it escapes this
+          header's backdrop-filter containing block and covers the real viewport. */}
+      {open && createPortal(
+        <div
+          className="nav-overlay"
+          style={{
+            position: 'fixed', inset: 0, zIndex: 60,
+            background: 'var(--surface-page)',
+            display: 'flex', flexDirection: 'column',
+            padding: '18px var(--page-x) clamp(32px, 6vh, 56px)',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 38 }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--ink-3)' }}>Menu</span>
+            <button
+              type="button"
+              aria-label="Close menu"
+              onClick={() => setOpen(false)}
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                width: 44, height: 44, border: '1.5px solid var(--ink-0)', background: 'transparent',
+                color: 'var(--ink-0)', cursor: 'pointer',
+              }}
+            >
+              <X size={20} />
+            </button>
+          </div>
+
+          <nav style={{ display: 'flex', flexDirection: 'column', marginTop: 'clamp(24px, 5vh, 48px)', borderTop: '1.5px solid var(--ink-0)' }}>
+            {ROUTES.map((l) => (
+              <NavLink key={l.id} to={l.path} style={({ isActive }) => ({
+                display: 'flex', alignItems: 'baseline', gap: 16,
+                padding: 'clamp(18px, 3.4vh, 28px) 0', borderBottom: '1px solid var(--line-0)',
+                fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(34px, 11vw, 56px)',
+                letterSpacing: '-0.03em', lineHeight: 1,
+                color: isActive ? 'var(--accent)' : 'var(--ink-0)',
+              })}>
+                {({ isActive }) => (
+                  <>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 500, fontSize: 14, letterSpacing: '0.04em', color: isActive ? 'var(--accent)' : 'var(--ink-3)' }}>{l.n}</span>
+                    {l.label}
+                  </>
+                )}
+              </NavLink>
+            ))}
+          </nav>
+
+          <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', gap: 18, paddingTop: 'clamp(24px, 5vh, 40px)' }}>
+            <a href="https://github.com/eXor404" target="_blank" rel="noreferrer">
+              <IconButton label="GitHub" variant="ghost" size="sm"><Github size={20} /></IconButton>
+            </a>
+            <a href="https://www.linkedin.com/in/maurice-d-ab0683397/" target="_blank" rel="noreferrer">
+              <IconButton label="LinkedIn" variant="ghost" size="sm"><Linkedin size={20} /></IconButton>
+            </a>
+          </div>
+        </div>,
+        document.body,
+      )}
     </header>
   );
 }

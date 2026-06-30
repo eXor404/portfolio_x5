@@ -145,6 +145,7 @@ h1, h2, h3, h4, p { margin: 0; }
 }
 @media (max-width: 720px) {
   .nav-links { display: none !important; }
+  .nav-burger { display: inline-flex !important; }
   .hide-sm { display: none !important; }
   .article-row { grid-template-columns: 1fr !important; }
   .tl-row { grid-template-columns: 64px 1fr !important; gap: 20px !important; }
