@@ -56,7 +56,7 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+                <div className="field-row">
                   <Input label="Name" placeholder="Pete Mitchell" required />
                   <Input label="Email" type="email" placeholder="you@domain.com" required />
                 </div>

@@ -22,7 +22,7 @@ export default function Input({ label, hint, error, prefix = null, mono = false,
         <input
           id={fieldId} onFocus={() => setFocus(true)} onBlur={() => setFocus(false)}
           style={{
-            flex: 1, border: 'none', outline: 'none', background: 'transparent', padding: '10px 0',
+            flex: 1, minWidth: 0, border: 'none', outline: 'none', background: 'transparent', padding: '10px 0',
             fontFamily: mono ? 'var(--font-mono)' : 'var(--font-sans)', fontSize: 'var(--text-sm)', color: 'var(--ink-0)',
           }}
           {...rest}

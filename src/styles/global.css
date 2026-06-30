@@ -151,6 +151,12 @@ h1, h2, h3, h4, p { margin: 0; }
   .tl-row { grid-template-columns: 64px 1fr !important; gap: 20px !important; }
 }
 
+/* ---------- contact: name/email field row ---------- */
+/* Two columns on desktop; stacks (email under name) on phones so the form
+   never forces horizontal scroll. */
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 540px) { .field-row { grid-template-columns: 1fr; } }
+
 /* ---------- about: values row (responsive dividers) ---------- */
 /* Desktop: 3 columns split by vertical hairlines. Mobile: 1 column where the
    divider flips to a top hairline between stacked cells, never a left line. */
