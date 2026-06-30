@@ -90,7 +90,10 @@ export default function Nav() {
       </button>
 
       {/* full-screen overlay menu — portaled to <body> so it escapes this
-          header's backdrop-filter containing block and covers the real viewport. */}
+          header's backdrop-filter containing block and covers the real viewport.
+          Its top bar mirrors the nav bar exactly (same padding, same 44px control
+          on the right, same 1.5px bottom border) so the X sits right where the
+          hamburger was and the divider lands on the same line. */}
       {open && createPortal(
         <div
           className="nav-overlay"
@@ -98,10 +101,12 @@ export default function Nav() {
             position: 'fixed', inset: 0, zIndex: 60,
             background: 'var(--surface-page)',
             display: 'flex', flexDirection: 'column',
-            padding: '18px var(--page-x) clamp(32px, 6vh, 56px)',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 38 }}>
+          <div style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            padding: '18px var(--page-x)', borderBottom: '1.5px solid var(--ink-0)', flex: '0 0 auto',
+          }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--ink-3)' }}>Menu</span>
             <button
               type="button"
@@ -117,14 +122,15 @@ export default function Nav() {
             </button>
           </div>
 
-          <nav style={{ display: 'flex', flexDirection: 'column', marginTop: 'clamp(24px, 5vh, 48px)', borderTop: '1.5px solid var(--ink-0)' }}>
-            {ROUTES.map((l) => (
-              <NavLink key={l.id} to={l.path} style={({ isActive }) => ({
+          <nav style={{ display: 'flex', flexDirection: 'column', padding: 'clamp(8px, 2vh, 20px) var(--page-x) 0' }}>
+            {ROUTES.map((l, i) => (
+              <NavLink key={l.id} to={l.path} className="reveal" style={({ isActive }) => ({
                 display: 'flex', alignItems: 'baseline', gap: 16,
                 padding: 'clamp(18px, 3.4vh, 28px) 0', borderBottom: '1px solid var(--line-0)',
                 fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(34px, 11vw, 56px)',
                 letterSpacing: '-0.03em', lineHeight: 1,
                 color: isActive ? 'var(--accent)' : 'var(--ink-0)',
+                animationDuration: '0.45s', animationDelay: `${60 + i * 55}ms`,
               })}>
                 {({ isActive }) => (
                   <>
@@ -136,7 +142,7 @@ export default function Nav() {
             ))}
           </nav>
 
-          <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', gap: 18, paddingTop: 'clamp(24px, 5vh, 40px)' }}>
+          <div className="reveal" style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', gap: 18, padding: '0 var(--page-x) clamp(32px, 6vh, 56px)', animationDelay: `${60 + ROUTES.length * 55}ms` }}>
             <a href="https://github.com/eXor404" target="_blank" rel="noreferrer">
               <IconButton label="GitHub" variant="ghost" size="sm"><Github size={20} /></IconButton>
             </a>
