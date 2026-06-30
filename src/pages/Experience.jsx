@@ -5,13 +5,44 @@ import PageHeader from '../components/PageHeader.jsx';
 import { Tag, Badge } from '../ds/index.js';
 import { TIMELINE } from '../data.js';
 
-/* Shared inner content for a single role — blurb + tag row. */
-function RoleBody({ blurb, tags }) {
+/* Turn the first mention of each named project into an accent link. Longer
+   phrases match first so "GVB Sales" wins over a bare "GVB". */
+function linkify(text, links) {
+  if (!links) return text;
+  const phrases = Object.keys(links).sort((a, b) => b.length - a.length);
+  let segments = [text];
+  phrases.forEach((phrase) => {
+    const next = [];
+    let done = false;
+    segments.forEach((seg) => {
+      if (done || typeof seg !== 'string') { next.push(seg); return; }
+      const idx = seg.indexOf(phrase);
+      if (idx === -1) { next.push(seg); return; }
+      if (idx > 0) next.push(seg.slice(0, idx));
+      next.push(
+        <a key={phrase} href={links[phrase]} target="_blank" rel="noopener noreferrer" className="tl-link">
+          {phrase}
+        </a>
+      );
+      const rest = seg.slice(idx + phrase.length);
+      if (rest) next.push(rest);
+      done = true;
+    });
+    segments = next;
+  });
+  return segments;
+}
+
+/* Shared inner content for a single role — blurb + tag row. Blank lines in the
+   blurb (\n\n) become paragraph breaks. */
+function RoleBody({ blurb, tags, links }) {
   return (
     <>
-      <p style={{ margin: '12px 0 0', fontSize: 15, lineHeight: 1.55, color: 'var(--ink-1)', maxWidth: '56ch' }}>
-        {blurb}
-      </p>
+      {blurb.split('\n\n').map((para, i) => (
+        <p key={i} style={{ margin: i === 0 ? '12px 0 0' : '10px 0 0', fontSize: 15, lineHeight: 1.55, color: 'var(--ink-1)', maxWidth: '56ch' }}>
+          {linkify(para, links)}
+        </p>
+      ))}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7, marginTop: 14 }}>
         {tags.map((t) => <Tag key={t} variant="outline" size="sm">{t}</Tag>)}
       </div>
@@ -79,7 +110,7 @@ export default function Experience() {
                             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.06em', color: 'var(--ink-3)', marginTop: 5, textTransform: 'uppercase' }}>
                               {r.period}
                             </div>
-                            <RoleBody blurb={r.blurb} tags={r.tags} />
+                            <RoleBody blurb={r.blurb} tags={r.tags} links={r.links} />
                           </div>
                           );
                         })}
@@ -93,7 +124,7 @@ export default function Experience() {
                       <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.06em', color: 'var(--ink-2)', marginTop: 8, textTransform: 'uppercase' }}>
                         {e.org} · {e.loc}
                       </div>
-                      <RoleBody blurb={e.roles[0].blurb} tags={e.roles[0].tags} />
+                      <RoleBody blurb={e.roles[0].blurb} tags={e.roles[0].tags} links={e.roles[0].links} />
                     </>
                   )}
                 </div>
