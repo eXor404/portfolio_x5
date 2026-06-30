@@ -86,10 +86,12 @@ export default function About() {
               </p>
             </div>
 
-            {/* values */}
-            <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, marginTop: 44, paddingTop: 'clamp(24px, 3.5vw, 40px)', borderTop: '1.5px solid var(--ink-0)' }}>
-              {VALUES.map((val, i) => (
-                <div key={val.k} style={{ padding: '0 24px 24px 0', borderLeft: i === 0 ? 'none' : '1px solid var(--line-0)', paddingLeft: i === 0 ? 0 : 24 }}>
+            {/* values — dividers are between-column on desktop, between-row on
+                mobile (handled in .value-grid CSS so stacked cells get a top
+                line instead of an orphaned left line). */}
+            <div className="value-grid" style={{ marginTop: 44 }}>
+              {VALUES.map((val) => (
+                <div key={val.k} className="value-cell">
                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 12 }}>{val.k}</div>
                   <p style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--ink-1)' }}>{val.v}</p>
                 </div>
