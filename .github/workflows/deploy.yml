@@ -67,7 +67,7 @@ jobs:
           SMTP_PORT: ${{ vars.SMTP_PORT || '587' }}
           SMTP_SECURE: ${{ vars.SMTP_SECURE || 'false' }}
           MAIL_FROM: ${{ vars.MAIL_FROM || 'Portfolio <portfolio@daeppen.dev>' }}
-          MAIL_TO: ${{ vars.MAIL_TO }}
+          MAIL_TO: ${{ vars.MAIL_TO || 'maurice@daeppen.dev' }}
           RETENTION_DAYS: ${{ vars.RETENTION_DAYS || '180' }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
