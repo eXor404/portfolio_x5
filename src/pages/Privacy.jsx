@@ -53,10 +53,22 @@ export default function Privacy() {
         </p>
       </LegalSection>
 
+      <LegalSection heading="Embedded map">
+        <p>
+          The about page shows a small map of Bern embedded from the Swiss Federal Geoportal
+          (map.geo.admin.ch), operated by swisstopo. To keep the page responsive the map may be
+          loaded in the background while you browse. When it loads, your browser connects directly to
+          that federal service, which necessarily receives your IP address and may set its own
+          technical cookies solely to display the map. This is used only to render the map; I receive
+          no data from it, and swisstopo&rsquo;s own privacy terms apply to that connection.
+        </p>
+      </LegalSection>
+
       <LegalSection heading="No tracking">
         <p>
-          This site sets no advertising or analytics cookies and does not profile visitors. Only the
-          strictly necessary requests to load the page and submit the form are made.
+          This site sets no advertising or analytics cookies of its own and does not profile
+          visitors. Apart from the embedded map described above, only the strictly necessary requests
+          to load the page and submit the form are made.
         </p>
       </LegalSection>
 
