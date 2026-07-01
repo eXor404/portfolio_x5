@@ -63,7 +63,7 @@ jobs:
           DEPLOY_PATH: ${{ secrets.SERVER_DEPLOY_PATH }}
           # --- contact-api config: non-sensitive -> Variables, credentials/crypto -> Secrets ---
           ALLOWED_ORIGINS: ${{ vars.ALLOWED_ORIGINS || 'https://daeppen.dev,https://www.daeppen.dev' }}
-          SMTP_HOST: ${{ vars.SMTP_HOST }}
+          SMTP_HOST: ${{ vars.SMTP_HOST || secrets.SMTP_HOST }}
           SMTP_PORT: ${{ vars.SMTP_PORT || '587' }}
           SMTP_SECURE: ${{ vars.SMTP_SECURE || 'false' }}
           MAIL_FROM: ${{ vars.MAIL_FROM || 'Portfolio <maurice@daeppen.dev>' }}
