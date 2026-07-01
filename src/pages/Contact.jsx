@@ -2,12 +2,13 @@
    The form POSTs to the secure contact backend (see /server). */
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Github, Linkedin, KeyRound, ArrowUpRight, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { Mail, Github, Linkedin, ArrowUpRight, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import PageHeader from '../components/PageHeader.jsx';
 import { Input, TextArea, Button, Badge, RotatingWord } from '../ds/index.js';
+import useMediaQuery from '../hooks/useMediaQuery.js';
 import { CONTACT_CHANNELS } from '../data.js';
 
-const ICONS = { mail: Mail, github: Github, linkedin: Linkedin, 'key-round': KeyRound };
+const ICONS = { mail: Mail, github: Github, linkedin: Linkedin };
 
 // Same-origin in production (reverse proxy); overridable for split deploys.
 const API_BASE = import.meta.env.VITE_CONTACT_API || '';
@@ -31,14 +32,7 @@ export default function Contact() {
   useEffect(() => { fetchToken(); }, []);
 
   // Shorten the subject placeholder on phones so it doesn't get clipped.
-  const [isNarrow, setIsNarrow] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 540px)');
-    const sync = () => setIsNarrow(mq.matches);
-    sync();
-    mq.addEventListener('change', sync);
-    return () => mq.removeEventListener('change', sync);
-  }, []);
+  const isNarrow = useMediaQuery('(max-width: 540px)');
 
   const set = (k) => (e) => {
     const v = e.target.type === 'checkbox' ? e.target.checked : e.target.value;

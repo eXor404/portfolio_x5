@@ -5,9 +5,9 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Github, Linkedin, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { ROUTES } from '../data.js';
-import { IconButton } from '../ds/index.js';
+import SocialIconLinks from './SocialIconLinks.jsx';
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -65,12 +65,7 @@ export default function Nav() {
           </NavLink>
         ))}
         <span style={{ width: 1, height: 22, background: 'var(--line-1)', margin: '0 10px' }} />
-        <a href="https://github.com/eXor404" target="_blank" rel="noreferrer">
-          <IconButton label="GitHub" variant="ghost" size="sm"><Github size={18} /></IconButton>
-        </a>
-        <a href="https://www.linkedin.com/in/maurice-d-ab0683397/" target="_blank" rel="noreferrer">
-          <IconButton label="LinkedIn" variant="ghost" size="sm"><Linkedin size={18} /></IconButton>
-        </a>
+        <SocialIconLinks size={18} />
       </nav>
 
       {/* mobile hamburger — only shown where .nav-links is hidden (<=720px) */}
@@ -143,12 +138,7 @@ export default function Nav() {
           </nav>
 
           <div className="reveal" style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', gap: 18, padding: '0 var(--page-x) clamp(32px, 6vh, 56px)', animationDelay: `${60 + ROUTES.length * 55}ms` }}>
-            <a href="https://github.com/eXor404" target="_blank" rel="noreferrer">
-              <IconButton label="GitHub" variant="ghost" size="sm"><Github size={20} /></IconButton>
-            </a>
-            <a href="https://www.linkedin.com/in/maurice-d-ab0683397/" target="_blank" rel="noreferrer">
-              <IconButton label="LinkedIn" variant="ghost" size="sm"><Linkedin size={20} /></IconButton>
-            </a>
+            <SocialIconLinks size={20} />
           </div>
         </div>,
         document.body,

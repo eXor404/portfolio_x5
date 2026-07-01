@@ -2,26 +2,16 @@
    collapses to just the essentials: the GitHub/LinkedIn social buttons and the
    legal baseline, instead of squashing the desktop space-between row onto one
    column. */
-import { useEffect, useState } from 'react';
 import { ArrowUp, ArrowUpRight, Github, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '../data.js';
-
-const GITHUB = 'https://github.com/eXor404';
-const LINKEDIN = 'https://www.linkedin.com/in/maurice-d-ab0683397/';
+import { ROUTES, SOCIALS } from '../data.js';
+import useMediaQuery from '../hooks/useMediaQuery.js';
 
 export default function Footer() {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   // Phones get the title-block layout; ≥640px keeps the wide meta row.
-  const [isNarrow, setIsNarrow] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 640px)');
-    const sync = () => setIsNarrow(mq.matches);
-    sync();
-    mq.addEventListener('change', sync);
-    return () => mq.removeEventListener('change', sync);
-  }, []);
+  const isNarrow = useMediaQuery('(max-width: 640px)');
 
   if (isNarrow) {
     return <MobileFooter />;
@@ -81,8 +71,8 @@ function MobileFooter() {
     <footer style={{ borderTop: '1.5px solid var(--ink-0)' }}>
       {/* socials — two hard-bordered buttons filling the row */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, borderBottom: '1px solid var(--line-0)' }}>
-        <SocialCell href={GITHUB} icon={<Github size={15} />} text="GitHub" border />
-        <SocialCell href={LINKEDIN} icon={<Linkedin size={15} />} text="LinkedIn" />
+        <SocialCell href={SOCIALS.github} icon={<Github size={15} />} text="GitHub" border />
+        <SocialCell href={SOCIALS.linkedin} icon={<Linkedin size={15} />} text="LinkedIn" />
       </div>
 
       {/* legal baseline */}

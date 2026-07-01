@@ -3,21 +3,20 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { PROFILE } from '../data.js';
-import { Button, Tag } from '../ds/index.js';
+import { Button, Tag, Eyebrow } from '../ds/index.js';
 
 export default function Hero() {
   return (
     <section id="top" className="bp-grid" style={{ borderBottom: '1.5px solid var(--ink-0)' }}>
       <div className="shell" style={{ paddingTop: 'clamp(40px, 6vh, 84px)', paddingBottom: 'clamp(80px, 12vh, 160px)' }}>
         {/* meta rail */}
-        <div className="reveal" style={{
+        <Eyebrow tone="dim" className="reveal" style={{
           display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 24,
-          fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--ink-2)',
         }}>
           <span>Portfolio / 2026</span>
           <span className="hide-sm">{PROFILE.coords}</span>
           <span>{PROFILE.location}</span>
-        </div>
+        </Eyebrow>
 
         <div style={{ marginTop: 'clamp(43px, 8vh, 88px)' }}>
           <div className="reveal" style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--ink-2)', letterSpacing: '0.06em', marginBottom: 26, animationDelay: '60ms' }}>
@@ -46,9 +45,7 @@ export default function Hero() {
                 </div>
               </div>
               <div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--ink-3)', marginBottom: 14 }}>
-                  Stack
-                </div>
+                <Eyebrow style={{ marginBottom: 14 }}>Stack</Eyebrow>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                   {PROFILE.stack.map((t) => (
                     <Link key={t} to="/about#stack" className="stack-chip" aria-label={`${t} — view full stack`}>

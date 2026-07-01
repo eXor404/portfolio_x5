@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import PageHeader from '../components/PageHeader.jsx';
-import { Card, Tag, SpecList, Annotation, SectionLabel } from '../ds/index.js';
+import { Card, Tag, SpecList, Annotation, SectionLabel, Eyebrow } from '../ds/index.js';
 import { SKILLS, LANGUAGES, VALUES, INTERESTS } from '../data.js';
 // The map iframe itself lives in PersistentMap (mounted once, kept booted).
 // Here we just expose a placeholder slot for it to position over.
@@ -69,7 +69,7 @@ export default function About() {
               I fell for code through video games. Modding Minecraft as a kid turned tinkering into a craft, and I never really stopped.
             </p>
             <p style={{ margin: '22px 0 0', fontSize: 16, lineHeight: 1.6, color: 'var(--ink-2)', maxWidth: '60ch' }}>
-              That became an apprenticeship in software engineering, shipping in a production team from my second year on. Somewhere along the way I found I love explaining this stuff as much as building it, so I qualified as a certified apprentice mentor and now help the next batch of apprentices and trial-day students find their feet. In February I start a bachelor in cyber security to push it all further.
+              That became an apprenticeship in software engineering, shipping in a production team from my second year on. Somewhere along the way I found I love explaining this stuff as much as building it, so I qualified as a certified apprentice mentor and now help the next batch of apprentices and trial-day students find their feet. In February 2027 I start a bachelor in cyber security to push it all further.
             </p>
             <p style={{ margin: '18px 0 0', fontSize: 16, lineHeight: 1.6, color: 'var(--ink-2)', maxWidth: '60ch' }}>
               What keeps me hooked is the problem solving. I lose all track of time untangling something hard, or re-explaining an idea five different ways until it finally clicks for someone. I like pointing that at security, because making systems harder to break feels like making the world a little bit better.
@@ -80,7 +80,7 @@ export default function About() {
 
             {/* motto */}
             <div style={{ marginTop: 44, borderTop: '1.5px solid var(--ink-0)', padding: 'clamp(28px, 4vw, 44px) 0 0' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ink-3)', marginBottom: 16 }}>[ motto ]</div>
+              <Eyebrow tracking="0.18em" style={{ marginBottom: 16 }}>[ motto ]</Eyebrow>
               <p style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(34px, 5.5vw, 64px)', lineHeight: 1.0, letterSpacing: '-0.04em', color: 'var(--ink-0)' }}>
                 Stay <span style={{ color: 'var(--accent)' }}>sweet</span> and <span style={{ color: 'var(--accent)' }}>silly.</span>
               </p>
@@ -92,7 +92,7 @@ export default function About() {
             <div className="value-grid" style={{ marginTop: 44 }}>
               {VALUES.map((val) => (
                 <div key={val.k} className="value-cell">
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 12 }}>{val.k}</div>
+                  <Eyebrow tone="accent" tracking="0.14em" style={{ marginBottom: 12 }}>{val.k}</Eyebrow>
                   <p style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--ink-1)' }}>{val.v}</p>
                 </div>
               ))}
@@ -102,7 +102,7 @@ export default function About() {
               <div className="skill-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28 }}>
                 {Object.entries(SKILLS).map(([group, items]) => (
                   <div key={group}>
-                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--ink-3)', marginBottom: 10 }}>{group}</div>
+                    <Eyebrow tracking="0.14em" style={{ marginBottom: 10 }}>{group}</Eyebrow>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
                       {items.map((t) => <Tag key={t} size="sm">{t}</Tag>)}
                     </div>
@@ -112,12 +112,12 @@ export default function About() {
             </Annotation>
 
             <div style={{ marginTop: 48 }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--ink-3)', marginBottom: 18 }}>Languages</div>
+              <Eyebrow tracking="0.14em" style={{ marginBottom: 18 }}>Languages</Eyebrow>
               <div style={{ display: 'flex', gap: 'clamp(28px, 5vw, 72px)', flexWrap: 'wrap' }}>
                 {LANGUAGES.map((l) => (
                   <div key={l.lang}>
                     <div style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 22, letterSpacing: '-0.02em', color: 'var(--ink-0)' }}>{l.lang}</div>
-                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--ink-2)', marginTop: 4 }}>{l.level}</div>
+                    <Eyebrow tone="dim" tracking="0.1em" style={{ marginTop: 4 }}>{l.level}</Eyebrow>
                   </div>
                 ))}
               </div>
@@ -132,7 +132,7 @@ export default function About() {
         <div className="interest-grid" style={{ marginTop: 40 }}>
           {INTERESTS.map((it) => (
             <div key={it.k} className="interest-cell">
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 12 }}>{it.k}</div>
+              <Eyebrow tone="accent" tracking="0.14em" style={{ marginBottom: 12 }}>{it.k}</Eyebrow>
               <p style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--ink-1)' }}>{it.v}</p>
             </div>
           ))}

@@ -1,15 +1,15 @@
 /* Catch-all 404 — keeps the Swiss voice. */
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import { Button } from '../ds/index.js';
+import { Button, Eyebrow } from '../ds/index.js';
 
 export default function NotFound() {
   const { pathname } = useLocation();
   return (
     <section className="shell bp-grid" style={{ minHeight: '64vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: 'clamp(80px,12vh,160px)', paddingBottom: 'clamp(80px,12vh,160px)' }}>
-      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 20 }}>
+      <Eyebrow tone="accent" size={12} tracking="0.12em" style={{ marginBottom: 20 }}>
         Error 404 · route not found
-      </div>
+      </Eyebrow>
       <h1 style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(56px, 11vw, 160px)', lineHeight: 0.88, letterSpacing: '-0.045em', color: 'var(--ink-0)' }}>
         Lost the<br />thread<span style={{ color: 'var(--accent)' }}>.</span>
       </h1>

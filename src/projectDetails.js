@@ -10,24 +10,16 @@ export const PROJECT_DETAILS = {
         "value": "~6.3k"
       },
       {
-        "label": "Source files",
-        "value": "44"
-      },
-      {
         "label": "Live data layers",
         "value": "5"
       },
       {
-        "label": "Runtime deps",
+        "label": "Tracked entities",
+        "value": "~20k"
+      },
+      {
+        "label": "Vector map layers",
         "value": "8"
-      },
-      {
-        "label": "Commits",
-        "value": "43"
-      },
-      {
-        "label": "Cesium ion token",
-        "value": "None"
       }
     ],
     "overview": "Argus is a dark command-center web app that fuses open-source, near-real-time situational data into one interactive 3D globe. Aircraft, satellites, earthquakes, vessels, and global event signals all normalize into a single entity model and render as glowing, click-to-inspect markers over a vector hologram Earth. A Fastify backend polls every upstream source once and fans the result out to all clients, so the browser never touches a third-party API directly.",
@@ -83,20 +75,12 @@ export const PROJECT_DETAILS = {
         "value": "~3.3k"
       },
       {
-        "label": "Source files",
-        "value": "29 JS modules"
+        "label": "Multiplayer",
+        "value": "Live 1v1 over WebSockets"
       },
       {
-        "label": "Commits",
-        "value": "33 in 6 days"
-      },
-      {
-        "label": "Runtime deps",
-        "value": "1 (ws)"
-      },
-      {
-        "label": "Build step",
-        "value": "None"
+        "label": "Renderer",
+        "value": "WebGL, no bundler"
       },
       {
         "label": "Netcode",
@@ -151,24 +135,16 @@ export const PROJECT_DETAILS = {
         "value": "~6.5k"
       },
       {
-        "label": "Source files",
-        "value": "46"
-      },
-      {
-        "label": "Commits",
-        "value": "70"
-      },
-      {
-        "label": "Subdomains",
-        "value": "3 (app / site / api)"
-      },
-      {
-        "label": "Backend",
-        "value": "Self-hosted Convex"
-      },
-      {
         "label": "Scheduling",
         "value": "SM-2 algorithm"
+      },
+      {
+        "label": "Auth",
+        "value": "Convex Auth"
+      },
+      {
+        "label": "Offline",
+        "value": "Installable PWA"
       }
     ],
     "overview": "Flashie is a spaced-repetition flashcard PWA built on a fully self-hosted Convex backend running over Postgres. It ships as three subdomains, app, landing, and API, with reactive queries driving the SM-2 review scheduler, a timezone-aware stats engine, and an installable offline-capable client. The whole stack deploys from a single git tag through a Docker and GitHub Actions pipeline.",
@@ -228,23 +204,21 @@ export const PROJECT_DETAILS = {
         "value": "Zero"
       },
       {
-        "label": "Build step",
-        "value": "None"
-      },
-      {
         "label": "Field modes",
         "value": "6"
-      },
-      {
-        "label": "Source files",
-        "value": "8"
       },
       {
         "label": "Noise solver",
         "value": "3D Perlin"
       }
     ],
-    "overview": "Flux is a generative flow-field studio that runs entirely in the browser with no build step and no dependencies. Thousands of particles are advected through a seedable 3D Perlin noise field that you sculpt in real time with the cursor, then rendered as glowing neon trails on a single 2D canvas. The whole simulation is roughly 800 lines of vanilla JavaScript wired together as plain IIFE modules.",
+    "links": [
+      {
+        "label": "flux.daeppen.dev",
+        "href": "https://flux.daeppen.dev"
+      }
+    ],
+    "overview": "flux is a generative flow-field studio that runs entirely in the browser with no build step and no dependencies. Thousands of particles are advected through a seedable 3D Perlin noise field that you sculpt in real time with the cursor, then rendered as glowing neon trails on a single 2D canvas. The whole thing is roughly 1.2k lines of dependency-free vanilla JavaScript, HTML and CSS, wired together as plain IIFE modules.",
     "technical": [
       "The core is a fixed particle pool advected through a vector field. Each frame every particle samples the field at its position to get an acceleration, integrates velocity with damping and a speed cap, and draws a single line segment from its old position to its new one. A low-alpha background repaint each frame fades older segments into long flowing trails, and particle color is mapped to instantaneous speed through a precomputed 256-entry palette ramp, so the field reads as a velocity map rather than a flat cloud.",
       "The field itself is a self-contained 3D Perlin noise implementation seeded by a mulberry32 PRNG, with time fed into the z axis so the field evolves smoothly instead of looping. Six interchangeable field generators (flow, vortex, gravity, magnetic, ripple, spiral) each return an acceleration for a given particle, and the cursor injects a radial force within an adjustable influence radius whose polarity flips between attract and repel on click. Because the noise is seedable, reseeding is deterministic and shareable.",
@@ -293,24 +267,22 @@ export const PROJECT_DETAILS = {
         "value": "~0.8k"
       },
       {
-        "label": "Runtime dependencies",
-        "value": "Zero"
+        "label": "Rendering",
+        "value": "Canvas API"
       },
       {
-        "label": "Build step",
-        "value": "None"
-      },
-      {
-        "label": "Commits",
-        "value": "16"
+        "label": "Input",
+        "value": "Paint or image"
       },
       {
         "label": "Grid",
-        "value": "53 weeks x 7 days"
-      },
+        "value": "GitHub calendar"
+      }
+    ],
+    "links": [
       {
-        "label": "Deploy",
-        "value": "Docker, GHCR, SSH"
+        "label": "git-art.net",
+        "href": "https://git-art.net"
       }
     ],
     "overview": "git-art is a single-file web tool that turns a GitHub contribution graph into a canvas. You paint pixel art onto a GitHub-style grid, or drop in an image and watch it quantize to the five-level green palette, then export a ready-to-run bash script of backdated commits that reproduces the artwork on a real profile. The entire app is one 774-line HTML document with zero runtime dependencies, deployed as a Docker image and live at git-art.net.",
@@ -362,24 +334,27 @@ export const PROJECT_DETAILS = {
         "value": "~1.7k"
       },
       {
-        "label": "Runtime deps",
-        "value": "10"
-      },
-      {
         "label": "Dev dependencies",
         "value": "0"
       },
       {
-        "label": "Commits",
-        "value": "28"
-      },
-      {
         "label": "Outputs",
-        "value": "Dev, static, PDF"
+        "value": "Static & PDF"
       },
       {
         "label": "Published",
-        "value": "npm"
+        "value": "npm",
+        "href": "https://www.npmjs.com/package/@exor404/mdslides"
+      }
+    ],
+    "links": [
+      {
+        "label": "mdslides.mdstack.dev",
+        "href": "https://mdslides.mdstack.dev"
+      },
+      {
+        "label": "npm · @exor404/mdslides",
+        "href": "https://www.npmjs.com/package/@exor404/mdslides"
       }
     ],
     "overview": "mdslides is a zero-config CLI that turns one markdown file into a presentation. Point it at a folder and it scaffolds a starter deck, then serves it with live reload, builds a self-contained static site you can host anywhere, or prints it to PDF. The whole rendering engine, including a custom unified pipeline and a from-scratch slide runtime, fits in under 1,700 lines with no dev dependencies.",
@@ -433,10 +408,6 @@ export const PROJECT_DETAILS = {
         "value": "~8.2k"
       },
       {
-        "label": "Source files",
-        "value": "50"
-      },
-      {
         "label": "Runtime deps",
         "value": "5"
       },
@@ -445,20 +416,27 @@ export const PROJECT_DETAILS = {
         "value": "4"
       },
       {
-        "label": "Commits",
-        "value": "39"
-      },
-      {
         "label": "Published",
-        "value": "npm @exor404/mdstack"
+        "value": "npm",
+        "href": "https://www.npmjs.com/package/@exor404/mdstack"
       }
     ],
-    "overview": "mdstack is a zero-config static-site CLI: point it at a folder of markdown and it either serves the files with hot reload or builds a self-contained dist/ you can deploy to any static host. A thin Node binary scaffolds a config and a homepage on first run, then drives a bundled Astro app that turns every .md into a route, ships every other file untouched, and renders four hand-built themes with server-side math and syntax highlighting.",
+    "links": [
+      {
+        "label": "www.mdstack.dev",
+        "href": "https://www.mdstack.dev"
+      },
+      {
+        "label": "npm · @exor404/mdstack",
+        "href": "https://www.npmjs.com/package/@exor404/mdstack"
+      }
+    ],
+    "overview": "mdstack is a zero-config static-site CLI: point it at a folder of markdown and it either serves the files with hot reload or builds a self-contained dist/ you can deploy to any static host. A thin Node binary scaffolds a config and a homepage on first run, then drives a bundled Astro app that turns every .md into a route, ships every other file untouched, and renders four self-designed themes with server-side math and syntax highlighting.",
     "technical": [
       "The CLI is a 154-line Node entry point with hand-rolled argument parsing and zero parsing dependencies. It resolves the target folder, writes a default mdstack.config.js and a starter index.md on first run, validates the theme, then sets MD_SOURCE and MD_THEME in the environment and programmatically invokes Astro's dev, build, or preview APIs against an Astro app that lives inside the package. The user's markdown never enters the package tree: an Astro content collection uses a glob loader rooted at MD_SOURCE, and a catch-all [...slug].astro maps each file to a route, with index.md becoming the homepage and frontmatter title and order driving the nav.",
       "Markdown rendering is extended with three custom remark plugins on top of remark-math and rehype-katex. One rewrites relative image paths to absolute paths from the source root and, importantly, contains them: any target that resolves outside the source folder is rejected, the same path-traversal guard applied byte for byte in the dev asset middleware. A second parses GitHub-style callouts (NOTE, TIP, IMPORTANT, WARNING, CAUTION) into labeled, icon-prefixed blockquotes, and a third turns ==text== into <mark>. Math is rendered server-side via KaTeX, code is highlighted with Shiki using a per-theme palette, and mermaid is loaded lazily through a dynamic import that only fires on pages that actually contain a diagram.",
       "Asset handling is a single Astro integration that does double duty. In dev it installs a Connect middleware that serves any non-markdown file straight from the source folder with correct MIME types, range-safe HEAD handling, and exclusion of dotfiles and build directories. At build time it walks the source tree, copies every non-.md file into dist for a self-contained output, then emits robots.txt always and sitemap.xml when a site URL is configured, while deferring to any user-supplied robots or sitemap. The client layer adds a localStorage theme toggle, an IntersectionObserver scroll-spy table of contents, heading anchor deep-links, and a cmd-K command palette that searches a build-time index of titles, headings, and body prose with highlighted snippet matches.",
-      "The package treats publishing as a controlled surface. A prepublishOnly guard runs npm pack in dry-run mode and refuses to publish if the tarball exceeds 500 kB or contains forbidden paths such as node_modules, build output, or the example folder, keeping the shipped CLI lean. The four themes are roughly 3,800 lines of hand-written CSS, each paired with a matching Shiki code theme. A separate marketing site, also built with Astro, is containerized with nginx and shipped through a tag-triggered GitHub Actions workflow that builds the image and pushes it to the registry."
+      "The package treats publishing as a controlled surface. A prepublishOnly guard runs npm pack in dry-run mode and refuses to publish if the tarball exceeds 500 kB or contains forbidden paths such as node_modules, build output, or the example folder, keeping the shipped CLI lean. The four themes are self-designed from scratch, roughly 3,800 lines of CSS, each paired with a matching Shiki code theme. A separate marketing site, also built with Astro, is containerized with nginx and shipped through a tag-triggered GitHub Actions workflow that builds the image and pushes it to the registry."
     ],
     "highlights": [
       {
@@ -497,92 +475,11 @@ export const PROJECT_DETAILS = {
     "shot": "/shots/mdstack.png",
     "shotLabel": "mdstack.dev"
   },
-  "meridian": {
-    "facts": [
-      {
-        "label": "Lines of code",
-        "value": "~2.7k"
-      },
-      {
-        "label": "Solver dependencies",
-        "value": "Zero"
-      },
-      {
-        "label": "Build step",
-        "value": "None (type-stripped TS)"
-      },
-      {
-        "label": "Languages",
-        "value": "TypeScript, Python, SQL"
-      },
-      {
-        "label": "ALNS operators",
-        "value": "3 destroy / 2 repair"
-      },
-      {
-        "label": "Unit tests",
-        "value": "13 (solver + routing)"
-      }
-    ],
-    "overview": "Meridian is a real-time fleet routing and dispatch platform built around a from-scratch metaheuristic solver for the Vehicle Routing Problem with Time Windows, the NP-hard problem at the core of every last-mile and field-service operation. It plans cost-optimal routes across a multi-depot fleet under capacity, time-window, skill, and shift constraints, tracks vehicles live on a map, and re-optimizes in place as rush orders and breakdowns arrive. The solver core is pure TypeScript with zero external dependencies and runs straight from source with no build step.",
-    "technical": [
-      "The heart of the project is a custom VRPTW engine implemented in plain TypeScript. It builds a starting solution with regret-2 insertion, then runs Adaptive Large Neighborhood Search: three constraint-aware destroy operators (random, worst-removal, and Shaw/related removal) paired with two repair operators (greedy and regret-2), selected by roulette wheel from weights that are re-scored every 100 iterations based on the rewards each operator earned. Acceptance follows a simulated-annealing schedule with cooling, reheat-on-stagnation, and intensification around the incumbent best. A deterministic mulberry32 PRNG makes any seed reproduce the same plan, and a final intra-route 2-opt polish removes residual crossings. The weighted objective balances travel cost, lateness, overtime, and an unassigned-order penalty, with hard checks for capacity, time windows, vehicle skills, and shift windows scheduled per route.",
-      "Routing is built behind a pluggable RoutingProvider interface. The default HaversineRouter computes a symmetric travel-time matrix (upper triangle only, then mirrored), applies a circuity factor so road distance is not treated as a straight line, layers a time-of-day congestion speed profile, and caches matrices in an LRU keyed by points, departure minute, and speed multiplier. An MlRouter decorates it: it fetches a learned speed multiplier from the Python service with a TTL cache, rejects NaN or out-of-range predictions so a bad model cannot corrupt routing, and falls back to the built-in congestion curve when the service is unavailable, so optimization never blocks on ML.",
-      "The dynamic side is genuinely incremental rather than a full re-solve. The /replan endpoint can inject rush orders, then warm-starts ALNS from the previous plan's assignment, places only the newly added orders, and re-optimizes under a tight time budget. The response includes a plan diff counting how many stops were reassigned versus newly served. A Fastify WebSocket streams simulated telemetry from a SimEngine that animates vehicles along the schedule baked into each plan and persists pings to PostGIS, while the React and MapLibre console renders per-vehicle routes, a KPI bar, a live solver convergence chart, and the reassignment diff.",
-      "Supporting layers are deliberately lean. Persistence is PostgreSQL with PostGIS, using GEOGRAPHY(POINT, 4326) columns, GiST spatial indexes, a nearest-depot lookup, and raw-SQL migrations with a seeded scenario on boot. The travel-time model is a gradient-boosted regressor of decision stumps written from scratch in numpy, trained on a synthetic congestion curve and served over FastAPI to predict per-departure speed multipliers. The whole thing is an npm-workspace monorepo (core, routing, solver, api, web) where the solver and routing packages run their unit tests directly through node --experimental-strip-types, with no transpile or bundler in the path, and CI builds the solver tests, the web bundle, and all Docker images."
-    ],
-    "stack": [
-      "TypeScript",
-      "Node.js",
-      "Fastify",
-      "WebSocket",
-      "React",
-      "MapLibre GL",
-      "Vite",
-      "PostgreSQL + PostGIS",
-      "Python",
-      "FastAPI",
-      "NumPy",
-      "Docker Compose"
-    ],
-    "highlights": [
-      {
-        "label": "From-scratch ALNS solver",
-        "text": "Regret-2 construction, Adaptive Large Neighborhood Search with three destroy and two repair operators, simulated-annealing acceptance, and a 2-opt polish, in pure dependency-free TypeScript."
-      },
-      {
-        "label": "Adaptive operator selection",
-        "text": "Roulette-wheel operators reweighted every 100 iterations from earned rewards, with reheat-on-stagnation and a deterministic PRNG for reproducible plans."
-      },
-      {
-        "label": "Incremental re-optimization",
-        "text": "The replan endpoint injects rush orders, warm-starts from the prior assignment under a tight budget, and returns a diff of reassigned versus newly served stops."
-      },
-      {
-        "label": "ML travel times with fallback",
-        "text": "A from-scratch numpy gradient-boosted regressor predicts time-of-day speed multipliers, consumed via a validating, cached router that gracefully falls back so optimization never blocks."
-      },
-      {
-        "label": "Live tracking on PostGIS",
-        "text": "Fastify WebSocket telemetry animates vehicles along baked schedules and persists pings to PostGIS, rendered on a MapLibre console with a live convergence chart."
-      }
-    ],
-    "shot": "/shots/meridian.png",
-    "shotLabel": "meridian"
-  },
   "mirage": {
     "facts": [
       {
         "label": "Lines of code",
         "value": "~2.8k"
-      },
-      {
-        "label": "Source files",
-        "value": "27"
-      },
-      {
-        "label": "Runtime deps",
-        "value": "4"
       },
       {
         "label": "ATT&CK techniques",
@@ -593,8 +490,8 @@ export const PROJECT_DETAILS = {
         "value": "50+"
       },
       {
-        "label": "Backend build step",
-        "value": "None"
+        "label": "Protocols",
+        "value": "SSH & HTTP"
       }
     ],
     "overview": "Mirage is a high-interaction SSH and HTTP honeypot that lets attackers in, emulates a believable production Ubuntu host down to its filesystem and process table, and never executes a single thing they type. Every captured session is enriched and turned into an ATT&CK-mapped attacker dossier, complete with extracted IOCs, a sophistication score, and an inferred intent, all explorable in a real-time threat-intelligence console with terminal-style replay.",
@@ -649,24 +546,16 @@ export const PROJECT_DETAILS = {
         "value": "~1.3k"
       },
       {
-        "label": "Source files",
-        "value": "21"
-      },
-      {
-        "label": "Commits",
-        "value": "44"
-      },
-      {
-        "label": "Runtime dependencies",
-        "value": "7"
-      },
-      {
         "label": "Terrain",
         "value": "Hand-written GLSL"
       },
       {
-        "label": "Languages",
-        "value": "TypeScript, GLSL, CSS"
+        "label": "Engine",
+        "value": "React Three Fiber"
+      },
+      {
+        "label": "HTML in 3D",
+        "value": "Iframe in 3D"
       }
     ],
     "overview": "A western-themed interactive 3D portfolio: a desert saloon rendered in the browser with React Three Fiber, lit for golden hour, with a cinematic camera that flies you into the scene on load. It pairs a hand-written GLSL terrain shader and a curve-driven steam train with a GSAP camera rig, and reaches roughly 1,330 lines of TypeScript across 21 source files.",
@@ -718,24 +607,12 @@ export const PROJECT_DETAILS = {
         "value": "~0.4k"
       },
       {
-        "label": "Source files",
-        "value": "6"
-      },
-      {
-        "label": "DNS sync script",
-        "value": "73 lines Python"
-      },
-      {
         "label": "Dependencies",
-        "value": "Zero (stdlib only)"
+        "value": "Zero"
       },
       {
         "label": "Services proxied",
         "value": "13"
-      },
-      {
-        "label": "Commits",
-        "value": "20"
       },
       {
         "label": "Build step",
@@ -788,41 +665,33 @@ export const PROJECT_DETAILS = {
         "value": "~3.3k"
       },
       {
-        "label": "Source files",
-        "value": "38 tracked"
+        "label": "Build",
+        "value": "Vibe-coded prototype"
       },
       {
-        "label": "Commits",
-        "value": "25"
+        "label": "Forgery cost",
+        "value": "CHF 0"
       },
       {
-        "label": "Languages",
-        "value": "TS / TSX / SQL"
-      },
-      {
-        "label": "Card locales",
-        "value": "DE / FR / IT"
-      },
-      {
-        "label": "Dependencies",
-        "value": "13 runtime"
+        "label": "Looks",
+        "value": "1:1"
       }
     ],
-    "overview": "IDmint is a working proof of concept that mints print-ready, QR-verified student ID cards and exposes how little security the new digital verification flows actually add. Built as a proposal for a Swiss vocational school, it is a full Next.js 16 App Router stack with Postgres, Prisma, server-side PDF rendering, and a public mobile check page, all wired to demonstrate that a forged card passes the exact same scan as a real one.",
+    "overview": "IDmint is a working proof of concept that mints digital, QR-verified student ID cards you show straight from your phone. The tool itself is properly built and locked down, a full Next.js 16 App Router stack with Postgres, Prisma, server-rendered cards, and constant-time staff auth, so only I can mint with it. The point it proves sits one level up: universities and vocational schools are rolling out exactly this kind of phone-shown digital ID, and a card I forge passes the same public mobile check as a real one. So the ID verification adds no real security. The only thing actually hardened here is my own tool, not the credential it produces.",
     "technical": [
-      "The card itself is rendered server-side with @react-pdf/renderer at fixed point dimensions, not exported from a browser. The PDF route loads the card and its institution from Prisma, generates a QR code pointing at the public check URL, re-reads the cropped photo and logo from disk as base64 data URIs, and renders a decorative vertical Code 128 strip via bwip-js rotated 90 degrees so it drops straight into a stretched flex column. Every glyph, the 3:4 portrait, the address block, and the logo are laid out in points and capped so aspect ratios are preserved, producing a deterministic, print-accurate single page.",
-      "Localization is modeled as a property of the card, not the request. Each card stores a locale column (de, fr, or it) that drives both outputs, the PDF text and the public check page, because the PDF is re-rendered on demand and the check page is opened by whoever scans the QR on their own phone, so neither can infer the issuing language from the browser. Message catalogs live in src/lib/messages with a typed contract shared across all three languages.",
+      "The card is a digital credential meant to be shown on a phone, never printed. It is rendered server-side with @react-pdf/renderer at fixed point dimensions rather than exported from a browser: the route loads the card and its institution from Prisma, generates a QR code pointing at the public check URL, re-reads the cropped photo and logo from disk as base64 data URIs, and renders a decorative vertical Code 128 strip via bwip-js rotated 90 degrees so it drops straight into a stretched flex column. Every glyph, the 3:4 portrait, the address block, and the logo are laid out in points and capped so aspect ratios are preserved, producing a deterministic single-page card that renders identically on any screen.",
+      "Localization is modeled as a property of the card, not the request. Each card stores a locale column (de, fr, or it) that drives both outputs, the card text and the public check page, because the card is re-rendered on demand and the check page is opened by whoever scans the QR on their own phone, so neither can infer the issuing language from the browser. Message catalogs live in src/lib/messages with a typed contract shared across all three languages.",
       "Auth is deliberately small and correct. A single staff account logs in against AUTH_USERNAME and AUTH_PASSWORD compared in constant time with a hand-written comparator that never short-circuits and folds the length difference into the result, so timing cannot reveal which field was wrong. Success mints a 7-day httpOnly JWT session signed with jose, and a Next 16 proxy guards the staff page and API prefixes, redirecting pages to login and returning 401 for API routes. Brute force is throttled with a 5-attempt, 15-minute in-memory IP lockout. The public check route uses an unguessable random token rather than the human ID number, so check URLs cannot be enumerated.",
-      "The same codebase ships as two separate deployments through a build-time route splitter. scripts/prune-routes.mjs reads APP_ROLE and physically deletes the other deployment's routes before next build, so the public check image only contains the check page and photo API while the staff image only contains the admin UI and protected APIs. Missing routes 404 naturally and no runtime gating is needed. Uploaded photos are normalized through sharp to a 450x600 JPEG with EXIF honored then stripped, and form input is validated end to end with Zod including the 3-4-3 ID number format and a valid-from/valid-until ordering refinement."
+      "The same codebase ships as two separate deployments through a build-time route splitter. scripts/prune-routes.mjs reads APP_ROLE and physically deletes the other deployment's routes before next build, so the public check deployment only contains the check page and photo API while the staff deployment only contains the admin UI and protected APIs. Missing routes 404 naturally and no runtime gating is needed. Uploaded photos are normalized through sharp to a 450x600 JPEG with EXIF honored then stripped, and form input is validated end to end with Zod including the 3-4-3 ID number format and a valid-from/valid-until ordering refinement."
     ],
     "highlights": [
       {
-        "label": "Server-rendered PDF",
-        "text": "Print-accurate cards laid out in points with @react-pdf/renderer, embedded QR, photo, logo, and a rotated Code 128 strip, no headless browser."
+        "label": "Server-rendered card",
+        "text": "Cards laid out in points with @react-pdf/renderer, embedded QR, photo, logo, and a rotated Code 128 strip, shown on a phone with no headless browser."
       },
       {
         "label": "Per-card i18n",
-        "text": "Locale is stored on the card and drives both the PDF and the public check page, because a scanned QR can never infer the issuing language."
+        "text": "Locale is stored on the card and drives both the card and the public check page, because a scanned QR can never infer the issuing language."
       },
       {
         "label": "Constant-time auth",
@@ -833,7 +702,7 @@ export const PROJECT_DETAILS = {
         "text": "Verification links use a random token instead of the human ID number, so cards cannot be enumerated from the public page."
       },
       {
-        "label": "Two images, one codebase",
+        "label": "Split deployments, one codebase",
         "text": "A build-time route pruner splits the app into separate staff and public-check deployments that physically cannot serve each other's endpoints."
       }
     ],
@@ -852,7 +721,21 @@ export const PROJECT_DETAILS = {
       "Tailwind CSS",
       "Docker"
     ],
-    "shot": "/shots/studentid-generator.png",
-    "shotLabel": "idmint"
+    "shots": [
+      {
+        "src": "/shots/idmint-card.png",
+        "tag": "card",
+        "label": "on your phone",
+        "alt": "A digital student ID card shown on a phone, with photo, name, validity date, and a QR code",
+        "caption": "The minted card, shown straight from a phone. The QR opens the check page."
+      },
+      {
+        "src": "/shots/idmint-check.png",
+        "tag": "check",
+        "label": "QR target",
+        "alt": "The public verification page the card's QR code opens, showing a valid student ID",
+        "caption": "What the QR opens: a public check page that reads the same for a real or forged card."
+      }
+    ]
   }
 };

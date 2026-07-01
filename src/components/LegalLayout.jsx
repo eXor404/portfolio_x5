@@ -1,6 +1,7 @@
 /* Shared shell for the legal pages (imprint / privacy / terms). Reuses the
    site masthead, then renders readable prose in a constrained measure. */
 import PageHeader from './PageHeader.jsx';
+import { Eyebrow } from '../ds/index.js';
 
 export function LegalSection({ heading, children }) {
   return (
@@ -25,9 +26,7 @@ export default function LegalLayout({ index, path, title, accentWord, lead, upda
       <section className="shell section" style={{ paddingTop: 'clamp(40px, 6vh, 72px)' }}>
         <div style={{ maxWidth: '70ch' }}>
           {updated && (
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.04em', textTransform: 'uppercase', color: 'var(--ink-3)' }}>
-              Last updated: {updated}
-            </p>
+            <Eyebrow as="p" size={12} tracking="0.04em">Last updated: {updated}</Eyebrow>
           )}
           {children}
         </div>

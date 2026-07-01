@@ -2,9 +2,8 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Hero from '../components/Hero.jsx';
-import PaperPlane from '../components/PaperPlane.jsx';
 import ProjectCard from '../components/ProjectCard.jsx';
-import { SectionLabel, Button, RotatingWord } from '../ds/index.js';
+import { SectionLabel, Button, RotatingWord, Eyebrow } from '../ds/index.js';
 import { PROJECTS } from '../data.js';
 
 function MoreLink({ to, children }) {
@@ -22,7 +21,6 @@ function MoreLink({ to, children }) {
 export default function Home() {
   return (
     <>
-      {/* <PaperPlane /> — temporarily disabled */}
       <Hero />
 
       {/* Work teaser */}
@@ -47,9 +45,7 @@ export default function Home() {
           alignItems: 'center', justifyContent: 'space-between',
         }}>
           <div style={{ flex: '1 1 360px', minWidth: 0 }}>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 16 }}>
-              Open to interesting work
-            </div>
+            <Eyebrow tone="accent" style={{ marginBottom: 16 }}>Open to interesting work</Eyebrow>
             <h2 style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(32px, 4.5vw, 60px)', lineHeight: 1.0, letterSpacing: '-0.035em', color: 'var(--ink-0)' }}>
               Let's build something<br /><RotatingWord />
             </h2>

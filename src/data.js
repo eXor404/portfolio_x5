@@ -27,7 +27,7 @@ export const PROJECTS = [
   },
   {
     n: '02', slug: 'studentid-generator', title: 'IDmint', tagline: 'Faking "secure" student IDs',
-    blurb: 'A proof of concept showing how trivially the digital student IDs now sold as innovation can be forged. It mints print-ready, QR-verified cards that pass the same mobile check page as the real thing, exposing that the verification adds no real security.',
+    blurb: 'A proof of concept showing how trivially the digital student IDs now sold as innovation can be forged. It mints QR-verified cards you show straight from your phone that pass the same mobile check page as the real thing, exposing that the verification adds no real security.',
     tags: ['Next.js', 'TypeScript', 'Postgres', 'Prisma', 'PDF'],
     specs: [{ key: 'LOC', value: '3.3k' }, { key: 'Year', value: '2026' }],
   },
@@ -38,58 +38,52 @@ export const PROJECTS = [
     specs: [{ key: 'LOC', value: '1.7k' }, { key: 'Year', value: '2026' }],
   },
   {
-    n: '04', slug: 'mdstack', title: 'mdstack', tagline: 'Zero-config markdown sites',
+    n: '04', slug: 'portfolio_x1', title: 'ThreeJS Portfolio', tagline: 'Interactive 3D portfolio',
+    blurb: 'A western-themed 3D portfolio built with Three.js. A saloon scene with golden-hour lighting and a camera fly-through along predefined paths.',
+    tags: ['Three.js', 'React', 'TypeScript', 'WebGL'],
+    specs: [{ key: 'LOC', value: '1.3k' }, { key: 'Year', value: '2024' }],
+  },
+  {
+    n: '05', slug: 'mdstack', title: 'mdstack', tagline: 'Zero-config markdown sites',
     blurb: 'Point it at a folder of markdown and get a rendered static site, in dev or as a deployable build for any static host. Published on npm as @exor404/mdstack.',
     tags: ['Node', 'CLI', 'Markdown', 'npm'],
     specs: [{ key: 'LOC', value: '8.2k' }, { key: 'Year', value: '2026' }],
   },
   {
-    n: '05', slug: 'mirage', title: 'Mirage', tagline: 'AI honeypot & threat intel',
-    blurb: 'High-interaction honeypot that lures attackers into a believable emulated Ubuntu host without ever executing their input, then turns each captured session into an ATT&CK-mapped attacker dossier in a real-time threat-intel console.',
-    tags: ['Node', 'TypeScript', 'ATT&CK', 'Docker'],
-    specs: [{ key: 'LOC', value: '2.8k' }, { key: 'Year', value: '2026' }],
-  },
-  {
-    n: '06', slug: 'server', title: 'Server', tagline: 'Self-hosted infra, GitOps deploys',
-    blurb: 'Single source of truth for my server. Edit a Caddyfile, push, and a GitHub Action reloads the reverse proxy and syncs DNS records automatically, with no SSH or dashboards.',
-    tags: ['Caddy', 'GitHub Actions', 'Docker', 'DNS'],
-    specs: [{ key: 'LOC', value: '0.4k' }, { key: 'Year', value: '2026' }],
-  },
-  {
-    n: '07', slug: 'meridian', title: 'Meridian', tagline: 'Fleet routing optimization',
-    blurb: 'Plans cost-optimal routes across a fleet and continuously re-optimizes as orders, delays, and breakdowns arrive. Built around a from-scratch metaheuristic solver for the NP-hard Vehicle Routing Problem with Time Windows.',
-    tags: ['TypeScript', 'Optimization', 'Geospatial', 'ML'],
-    specs: [{ key: 'LOC', value: '2.7k' }, { key: 'Year', value: '2026' }],
-  },
-  {
-    n: '08', slug: 'flux', title: 'Flux', tagline: 'Generative flow-field studio',
+    n: '06', slug: 'flux', title: 'flux', tagline: 'Generative flow-field studio',
     blurb: 'Thousands of particles drifting through a noise-driven vector field you sculpt in real time with the cursor. Runs entirely in the browser with no build step and zero dependencies.',
     tags: ['Vanilla JS', 'Canvas', 'Generative'],
-    specs: [{ key: 'LOC', value: '1.2k' }, { key: 'Year', value: '2026' }],
+    specs: [{ key: 'LOC', value: '1.2k' }, { key: 'Year', value: '2023' }],
   },
   {
-    n: '09', slug: 'csweb', title: 'CS Web', tagline: '1v1 browser Counter-Strike',
+    n: '07', slug: 'csweb', title: 'CS Web', tagline: '1v1 browser Counter-Strike',
     blurb: 'First-person 3D Counter-Strike in the browser with real-time multiplayer over WebSockets, plus a round system with economy and a buy menu. First to five wins.',
     tags: ['Three.js', 'WebSockets', 'Node'],
-    specs: [{ key: 'LOC', value: '3.3k' }, { key: 'Year', value: '2026' }],
+    specs: [{ key: 'LOC', value: '3.3k' }, { key: 'Year', value: '2024' }],
   },
   {
-    n: '10', slug: 'flashy', title: 'Flashie', tagline: 'Spaced-repetition flashcards',
-    blurb: 'Spaced-repetition flashcard PWA shipped across app, landing, and API subdomains, backed by a self-hosted Convex backend and Postgres.',
-    tags: ['React', 'TypeScript', 'Convex', 'Postgres', 'PWA'],
-    specs: [{ key: 'LOC', value: '6.5k' }, { key: 'Year', value: '2026' }],
+    n: '08', slug: 'server', title: 'Server', tagline: 'Self-hosted infra, GitOps deploys',
+    blurb: 'Single source of truth for my server. Edit a Caddyfile, push, and a GitHub Action reloads the reverse proxy and syncs DNS records automatically, with no SSH or dashboards.',
+    tags: ['Caddy', 'GitHub Actions', 'Docker', 'DNS'],
+    specs: [{ key: 'LOC', value: '0.4k' }, { key: 'Year', value: '2025' }],
   },
   {
-    n: '11', slug: 'git-art', title: 'git-art', tagline: 'GitHub contribution graph art',
+    n: '09', slug: 'mirage', title: 'Mirage', tagline: 'AI honeypot & threat intel',
+    blurb: 'High-interaction honeypot that lures attackers into a believable emulated Ubuntu host without ever executing their input, then turns each captured session into an ATT&CK-mapped attacker dossier in a real-time threat-intel console.',
+    tags: ['Node', 'TypeScript', 'ATT&CK', 'Docker'],
+    specs: [{ key: 'LOC', value: '2.8k' }, { key: 'Year', value: '2025' }],
+  },
+  {
+    n: '10', slug: 'git-art', title: 'git-art', tagline: 'GitHub contribution graph art',
     blurb: 'Paint pixel art onto a GitHub-style contribution grid, then export a ready-to-run bash script of backdated commits to make it real. Live at git-art.net.',
     tags: ['JavaScript', 'Canvas', 'HTML'],
-    specs: [{ key: 'LOC', value: '0.8k' }, { key: 'Year', value: '2026' }],
+    specs: [{ key: 'LOC', value: '0.8k' }, { key: 'Year', value: '2025' }],
   },
   {
-    n: '12', slug: 'portfolio_x1', title: 'ThreeJS Portfolio', tagline: 'Interactive 3D portfolio',
-    blurb: 'A western-themed 3D portfolio built with Three.js. A saloon scene with golden-hour lighting and a camera fly-through along predefined paths.',
-    tags: ['Three.js', 'React', 'TypeScript', 'WebGL'],
-    specs: [{ key: 'LOC', value: '1.3k' }, { key: 'Year', value: '2026' }],
+    n: '11', slug: 'flashy', title: 'Flashie', tagline: 'Spaced-repetition flashcards',
+    blurb: 'Spaced-repetition flashcard PWA shipped across app, landing, and API subdomains, backed by a self-hosted Convex backend and Postgres.',
+    tags: ['React', 'TypeScript', 'Convex', 'Postgres', 'PWA'],
+    specs: [{ key: 'LOC', value: '6.5k' }, { key: 'Year', value: '2025' }],
   },
 ];
 
@@ -151,7 +145,7 @@ export const SKILLS = {
   'Edge / Proxy': ['Traefik', 'Nginx', 'Caddy'],
   'Security / Auth': ['Keycloak', 'OAuth2 / OIDC', 'TLS'],
   'Observability': ['Prometheus', 'Grafana', 'Splunk'],
-  'AI / Tooling': ['LLM-assisted dev', 'Vibe coding', 'OpenAI API', 'Anthropic / Claude API', 'Prompt engineering'],
+  'AI / Tooling': ['LLM-assisted dev', 'OpenAI API', 'Anthropic / Claude API', 'Prompt engineering'],
 };
 
 export const LANGUAGES = [
@@ -177,8 +171,14 @@ export const INTERESTS = [
   { k: 'Travel', v: 'New cities, new places, new perspectives.' },
 ];
 
+/* Single source for social/profile URLs — reused by the nav, footer, and the
+   contact channel list below. */
+export const SOCIALS = {
+  github: 'https://github.com/eXor404',
+  linkedin: 'https://www.linkedin.com/in/maurice-d-ab0683397/',
+};
+
 export const CONTACT_CHANNELS = [
-  { icon: 'github', label: 'github.com/eXor404', href: 'https://github.com/eXor404' },
-  { icon: 'linkedin', label: 'in/maurice-d', href: 'https://www.linkedin.com/in/maurice-d-ab0683397/' },
-  { icon: 'key-round', label: 'PGP · 0xA1F4 9C22', href: '#' },
+  { icon: 'github', label: 'github.com/eXor404', href: SOCIALS.github },
+  { icon: 'linkedin', label: 'in/maurice-d', href: SOCIALS.linkedin },
 ];

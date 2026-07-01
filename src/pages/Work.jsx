@@ -1,6 +1,7 @@
-/* /work — projects index. Custom masthead, then the featured + grid layout. */
+/* /work — projects index. Custom masthead, then a uniform 2-up project grid. */
 import PageHeader from '../components/PageHeader.jsx';
 import ProjectCard from '../components/ProjectCard.jsx';
+import { Eyebrow } from '../ds/index.js';
 import { PROJECTS } from '../data.js';
 
 export default function Work() {
@@ -9,7 +10,7 @@ export default function Work() {
       <PageHeader
         index="01" path="/work" title="Selected " accentWord="work."
         lead="A fine selection of my projects, all designed and built end to end, from security tooling and developer CLIs to real-time systems and a few things I made just to see if I could."
-        meta={[['Projects', String(PROJECTS.length).padStart(2, '0')], ['Focus', 'Platforms · Security'], ['Years', '2023 – 2025']]}
+        meta={[['Projects', String(PROJECTS.length).padStart(2, '0')], ['Focus', 'Platforms · Security'], ['Years', '2023 – 2026']]}
       />
 
       <section className="shell section" style={{ paddingTop: 'clamp(48px, 7vh, 88px)' }}>
@@ -24,9 +25,7 @@ export default function Work() {
           justifyContent: 'space-between', gap: 24, flexWrap: 'wrap',
         }}>
           <div>
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 12 }}>
-              [ wip ]
-            </div>
+            <Eyebrow tone="accent" style={{ marginBottom: 12 }}>[ wip ]</Eyebrow>
             <div style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(26px, 3.4vw, 40px)', letterSpacing: '-0.03em', color: 'var(--ink-0)', display: 'inline-flex', alignItems: 'baseline', gap: 6 }}>
               A lot more to come<span className="blink" style={{ color: 'var(--accent)' }}>_</span>
             </div>

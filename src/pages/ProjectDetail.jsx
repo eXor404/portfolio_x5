@@ -3,33 +3,18 @@
    framed screenshot, a creative fact rail, the overview + technical write-up,
    feature highlights, the real stack, and prev/next nav. Content comes from
    PROJECTS (card data) + PROJECT_DETAILS (per-project research) in data.js. */
-import { useEffect, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { PROJECTS, PROJECT_DETAILS } from '../data.js';
-import { Tag } from '../ds/index.js';
-
-/* True while the write-up is stacked (aside drops below the body at 860px). */
-function useStacked() {
-  const [stacked, setStacked] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 860px)');
-    const sync = () => setStacked(mq.matches);
-    sync();
-    mq.addEventListener('change', sync);
-    return () => mq.removeEventListener('change', sync);
-  }, []);
-  return stacked;
-}
+import { Tag, Eyebrow } from '../ds/index.js';
+import useMediaQuery from '../hooks/useMediaQuery.js';
 
 /* Stack chip list — rendered inline after the overview on phones, and in the
    sticky side rail on desktop. */
 function StackBlock({ tags, style }) {
   return (
     <div style={style}>
-      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--ink-3)', marginBottom: 18, paddingBottom: 12, borderBottom: '1.5px solid var(--ink-0)' }}>
-        Stack
-      </div>
+      <Eyebrow style={{ marginBottom: 18, paddingBottom: 12, borderBottom: '1.5px solid var(--ink-0)' }}>Stack</Eyebrow>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
         {tags.map((t) => <Tag key={t} size="sm">{t}</Tag>)}
       </div>
@@ -63,6 +48,38 @@ function MacWindow({ src, label, alt }) {
   );
 }
 
+/* Two (or more) portrait app screenshots shown side by side and phone-sized —
+   used where a project reads better as a small gallery than one wide window
+   (e.g. a mobile card + the page its QR opens). Wraps to a stack on narrow
+   viewports. Each panel keeps the same hard-bordered figure language as the
+   Mac window, minus the desktop traffic lights. */
+function ShotPair({ shots }) {
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(24px, 4vw, 48px)', justifyContent: 'center' }}>
+      {shots.map((s) => (
+        <figure key={s.src} style={{ margin: 0, flex: '0 1 300px', maxWidth: 320, display: 'flex', flexDirection: 'column' }}>
+          <div style={{ border: '1.5px solid var(--ink-0)', background: 'var(--paper-2)', boxShadow: 'var(--shadow-hard)' }}>
+            <div style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12,
+              padding: '10px 13px', borderBottom: '1.5px solid var(--ink-0)', background: 'var(--paper-1)',
+              fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.06em', textTransform: 'uppercase',
+            }}>
+              <span style={{ color: 'var(--accent)' }}>{s.tag}</span>
+              <span style={{ color: 'var(--ink-3)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{s.label}</span>
+            </div>
+            <img src={s.src} alt={s.alt} loading="lazy" style={{ display: 'block', width: '100%', height: 'auto' }} />
+          </div>
+          {s.caption && (
+            <figcaption style={{ marginTop: 14, fontFamily: 'var(--font-mono)', fontSize: 12, lineHeight: 1.55, color: 'var(--ink-2)' }}>
+              {s.caption}
+            </figcaption>
+          )}
+        </figure>
+      ))}
+    </div>
+  );
+}
+
 function FactRail({ facts }) {
   return (
     <div style={{
@@ -74,11 +91,14 @@ function FactRail({ facts }) {
           padding: '20px 22px',
           borderRight: '1px solid var(--line-0)', borderBottom: '1px solid var(--line-0)',
         }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--ink-3)', marginBottom: 10 }}>
-            {f.label}
-          </div>
+          <Eyebrow size={10} style={{ marginBottom: 10 }}>{f.label}</Eyebrow>
           <div style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(22px, 3vw, 30px)', letterSpacing: '-0.02em', color: 'var(--ink-0)', lineHeight: 1.05 }}>
-            {f.value}
+            {f.href ? (
+              <a href={f.href} target="_blank" rel="noreferrer" className="ul-link"
+                style={{ color: 'var(--accent)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                {f.value}<ArrowUpRight size={20} strokeWidth={2.5} />
+              </a>
+            ) : f.value}
           </div>
         </div>
       ))}
@@ -88,10 +108,11 @@ function FactRail({ facts }) {
 
 export default function ProjectDetail() {
   const { slug } = useParams();
+  /* Aside drops below the body at 860px; the stack chips ride up inline there. */
+  const stacked = useMediaQuery('(max-width: 860px)');
   const idx = PROJECTS.findIndex((p) => p.slug === slug);
   if (idx === -1) return <Navigate to="/work" replace />;
 
-  const stacked = useStacked();
   const p = PROJECTS[idx];
   const d = PROJECT_DETAILS[slug] || {};
   const stack = d.stack || p.tags;
@@ -130,11 +151,30 @@ export default function ProjectDetail() {
           <p className="reveal" style={{ maxWidth: '60ch', fontSize: 19, lineHeight: 1.6, color: 'var(--ink-1)', marginTop: 'clamp(32px, 5vh, 56px)', animationDelay: '180ms' }}>
             {p.blurb}
           </p>
+
+          {/* Live / external links (live site, npm, repo). Optional per project. */}
+          {d.links && d.links.length > 0 && (
+            <div className="reveal" style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(14px, 2vw, 28px)', marginTop: 'clamp(28px, 4vh, 40px)', animationDelay: '240ms' }}>
+              {d.links.map((l) => (
+                <a key={l.href} href={l.href} target="_blank" rel="noreferrer" className="ul-link" style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  fontFamily: 'var(--font-mono)', fontSize: 13, letterSpacing: '0.02em', color: 'var(--ink-0)',
+                  borderBottom: '1.5px solid var(--accent)', paddingBottom: 4,
+                }}>
+                  {l.label}<ArrowUpRight size={15} style={{ color: 'var(--accent)' }} />
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </header>
 
-      {/* screenshot */}
-      {d.shot && (
+      {/* screenshot(s): a paired phone gallery when provided, else one window */}
+      {d.shots ? (
+        <section className="shell" style={{ paddingTop: 'clamp(48px, 7vh, 80px)' }}>
+          <ShotPair shots={d.shots} />
+        </section>
+      ) : d.shot && (
         <section className="shell" style={{ paddingTop: 'clamp(48px, 7vh, 80px)' }}>
           <MacWindow src={d.shot} label={d.shotLabel || `${p.slug} — ${p.title}`} alt={`${p.title} screenshot`} />
         </section>
@@ -172,9 +212,7 @@ export default function ProjectDetail() {
           <aside style={{ display: 'flex', flexDirection: 'column', gap: 36, position: 'sticky', top: 96 }}>
             {d.highlights && d.highlights.length > 0 && (
               <div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--ink-3)', marginBottom: 18, paddingBottom: 12, borderBottom: '1.5px solid var(--ink-0)' }}>
-                  Highlights
-                </div>
+                <Eyebrow style={{ marginBottom: 18, paddingBottom: 12, borderBottom: '1.5px solid var(--ink-0)' }}>Highlights</Eyebrow>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
                   {d.highlights.map((h) => (
                     <div key={h.label}>
@@ -198,18 +236,18 @@ export default function ProjectDetail() {
           <Link to={`/work/${prev.slug}`} className="detail-nav" style={{
             display: 'flex', flexDirection: 'column', gap: 8, padding: 'clamp(24px, 4vh, 40px) 0', paddingRight: 24, color: 'inherit',
           }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--ink-3)', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+            <Eyebrow as="span" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
               <ArrowLeft size={14} /> Prev
-            </span>
+            </Eyebrow>
             <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(22px, 3vw, 32px)', letterSpacing: '-0.03em', color: 'var(--ink-0)' }}>{prev.title}</span>
           </Link>
           <Link to={`/work/${next.slug}`} className="detail-nav" style={{
             display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-end', textAlign: 'right',
             padding: 'clamp(24px, 4vh, 40px) 0', paddingLeft: 24, borderLeft: '1px solid var(--line-0)', color: 'inherit',
           }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--ink-3)', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+            <Eyebrow as="span" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
               Next <ArrowRight size={14} />
-            </span>
+            </Eyebrow>
             <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 'clamp(22px, 3vw, 32px)', letterSpacing: '-0.03em', color: 'var(--ink-0)' }}>{next.title}</span>
           </Link>
         </div>
