@@ -43,6 +43,17 @@ jobs:
           docker push ${{ env.API_IMAGE }}:${{ github.ref_name }}
           docker push ${{ env.API_IMAGE }}:latest
 
+      # Only docker-compose.yml is needed on the server — images come from ghcr
+      # and nginx.conf is baked into the web image, so there is no git checkout.
+      - name: Copy compose file to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          source: docker-compose.yml
+          target: ${{ secrets.SERVER_DEPLOY_PATH }}
+
       - name: Deploy on server
         uses: appleboy/ssh-action@v1
         env:
@@ -69,17 +80,12 @@ jobs:
           envs: GITHUB_TOKEN,GITHUB_ACTOR,TAG,DEPLOY_PATH,ALLOWED_ORIGINS,SMTP_HOST,SMTP_PORT,SMTP_SECURE,MAIL_FROM,MAIL_TO,RETENTION_DAYS,SMTP_USER,SMTP_PASS,IP_SALT,FORM_TOKEN_SECRET
           script: |
             set -eu
-            REPO="https://x-access-token:${GITHUB_TOKEN}@github.com/eXor404/portfolio_x5.git"
-            if [ ! -d "${DEPLOY_PATH}/.git" ]; then
-              git clone "${REPO}" "${DEPLOY_PATH}"
-            fi
             cd "${DEPLOY_PATH}"
-            git fetch "${REPO}" main --tags
-            git checkout "${TAG}"
             # Pin the compose images to this tag.
             echo "PORTFOLIO_VERSION=${TAG}" > .env
             # Render the contact-api env file (0600) from GitHub Secrets/Variables,
             # so no secret is ever committed and every deploy is reproducible.
+            mkdir -p server
             rm -f server/.env
             umask 077
             {
