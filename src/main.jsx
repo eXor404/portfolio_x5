@@ -3,6 +3,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+// Self-hosted fonts (bundled by Vite, served from our own origin). This keeps
+// the exact typefaces while making zero third-party requests to Google — no
+// visitor IP is leaked to a font CDN, matching the privacy notice.
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/jetbrains-mono';
+import '@fontsource-variable/jetbrains-mono/wght-italic.css';
+
 import './styles/global.css';
 
 import Layout from './components/Layout.jsx';

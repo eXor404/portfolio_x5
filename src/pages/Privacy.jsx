@@ -26,7 +26,7 @@ export default function Privacy() {
           <li>A one-way, salted hash of your IP address, kept only to limit spam and abuse. The raw IP address is never stored.</li>
         </ul>
         <p>
-          This data is sent to my email inbox and kept in a backup record so no enquiry is lost.
+          This data is sent to my email inbox and written to a backup record so no enquiry is lost.
           It is used solely to handle your enquiry and is not used for advertising or shared with
           third parties for their own purposes.
         </p>
@@ -39,8 +39,9 @@ export default function Privacy() {
           Switzerland the equivalent provisions of the revised Federal Act on Data Protection apply.
         </p>
         <p>
-          Enquiry data is kept only as long as needed to handle your request and any follow up,
-          then deleted. You can ask me to delete it sooner at any time.
+          Messages in my inbox are kept only as long as needed to handle your request and any
+          follow up, then deleted. The automatic backup record is deleted after at most 180 days.
+          You can ask me to delete your data sooner at any time.
         </p>
       </LegalSection>
 

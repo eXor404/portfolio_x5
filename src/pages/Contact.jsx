@@ -156,15 +156,18 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+                {/* maxLength mirrors the server's Zod caps (name 120, email 254,
+                    subject 160, message 5000) — defense in depth: oversized input
+                    can't even be typed, and the server re-enforces regardless. */}
                 <div className="field-row">
-                  <Input label="Name" placeholder="Pete Mitchell" required autoComplete="name"
+                  <Input label="Name" placeholder="Pete Mitchell" required autoComplete="name" maxLength={120}
                     value={form.name} onChange={set('name')} error={errors.name} disabled={sending} aria-invalid={!!errors.name} />
-                  <Input label="Email" type="email" placeholder="you@domain.com" required autoComplete="email"
+                  <Input label="Email" type="email" placeholder="you@domain.com" required autoComplete="email" maxLength={254}
                     value={form.email} onChange={set('email')} error={errors.email} disabled={sending} aria-invalid={!!errors.email} />
                 </div>
-                <Input label="Subject" placeholder={isNarrow ? 'You seem pretty awesome :D' : 'You seem pretty awesome, wanna connect? :D'}
+                <Input label="Subject" maxLength={160} placeholder={isNarrow ? 'You seem pretty awesome :D' : 'You seem pretty awesome, wanna connect? :D'}
                   value={form.subject} onChange={set('subject')} error={errors.subject} disabled={sending} />
-                <TextArea label="Message" rows={5} placeholder="How's it going?" required
+                <TextArea label="Message" rows={5} maxLength={5000} placeholder="How's it going?" required
                   value={form.message} onChange={set('message')} error={errors.message} disabled={sending} aria-invalid={!!errors.message} />
 
                 {/* Honeypot — hidden from humans, irresistible to bots. */}

@@ -39,9 +39,10 @@ app.use(
 app.use(express.json({ limit: '16kb' }));
 
 // Salt the IP before hashing so stored records hold a pseudonymous token, not
-// a raw address (GDPR data minimization). Salt rotates per-deploy if unset.
-const ipSalt = process.env.IP_SALT || `${config.env}:${config.port}`;
-const hashIp = (ip) => createHash('sha256').update(ipSalt + (ip || '')).digest('hex').slice(0, 16);
+// a raw address (GDPR data minimization). The salt is resolved in config and is
+// random-per-process in production when unset, so the hash can never be reversed
+// with a guessed salt.
+const hashIp = (ip) => createHash('sha256').update(config.ipSalt + (ip || '')).digest('hex').slice(0, 16);
 
 const contactLimiter = rateLimit({
   windowMs: config.rateLimit.windowMs,
@@ -59,7 +60,9 @@ const tokenLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-app.get('/health', (_req, res) => res.json({ ok: true, env: config.env }));
+// Liveness only — deliberately no env/version details, so the probe leaks
+// nothing about the deployment to an unauthenticated caller.
+app.get('/health', (_req, res) => res.json({ ok: true }));
 
 // Issue a signed, expiring form token for the client to return on submit.
 app.get('/api/form-token', tokenLimiter, (_req, res) => res.json({ token: issueToken() }));

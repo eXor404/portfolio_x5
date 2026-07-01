@@ -1,0 +1,7 @@
+# Coordinated vulnerability disclosure for mauricedaeppen.dev
+# https://www.rfc-editor.org/rfc/rfc9116
+
+Contact: https://mauricedaeppen.dev/contact
+Expires: 2027-07-01T00:00:00.000Z
+Preferred-Languages: en, de
+Canonical: https://mauricedaeppen.dev/.well-known/security.txt

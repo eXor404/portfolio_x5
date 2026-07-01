@@ -9,7 +9,7 @@
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 import { config } from './config.js';
 
-const SECRET = process.env.FORM_TOKEN_SECRET || process.env.IP_SALT || `${config.env}:form-token`;
+const SECRET = config.formTokenSecret;
 
 const b64 = (buf) => Buffer.from(buf).toString('base64url');
 const sign = (issuedAt, nonce) =>

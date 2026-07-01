@@ -13,6 +13,12 @@ if (smtpConfigured) {
     // if offered — the privacy notice promises delivery over an encrypted
     // connection, so refuse to send in the clear.
     requireTLS: true,
+    // Bound every phase so a slow or hung mail server can't pin an inbound
+    // request open indefinitely (resource exhaustion). The request handler
+    // surfaces a clean 502 to the visitor if delivery stalls.
+    connectionTimeout: 10_000,
+    greetingTimeout: 10_000,
+    socketTimeout: 20_000,
     auth: { user: config.smtp.user, pass: config.smtp.pass },
   });
 }
@@ -56,9 +62,12 @@ export async function sendContactMail({ name, email, subject, message, meta }) {
   await transporter.sendMail({
     from: config.mail.from,
     to: config.mail.to,
-    // Let the owner hit "reply" and answer the visitor directly. The visitor's
-    // address is already sanitized to a single line by validation.
-    replyTo: `${name} <${email}>`,
+    // Let the owner hit "reply" and answer the visitor directly. Pass the name
+    // and address as a structured object so nodemailer encodes the display name
+    // itself — a name containing angle brackets or quotes can't distort the
+    // resolved reply address. (Both are already stripped of control chars by
+    // validation, closing header injection at the source.)
+    replyTo: { name, address: email },
     subject: subjectLine,
     text,
   });
