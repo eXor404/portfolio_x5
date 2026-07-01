@@ -1,0 +1,48 @@
+# Full portfolio stack. Run: docker compose up -d --build
+#   web         nginx serving the built SPA + reverse-proxying /api
+#   contact-api the secure contact backend (internal network only)
+# Secrets for the API come from server/.env (copy from server/.env.example).
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      # Expose the site here; put a TLS-terminating proxy in front in production.
+      - "${WEB_PORT:-8080}:80"
+    depends_on:
+      - contact-api
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  contact-api:
+    build: ./server
+    restart: unless-stopped
+    env_file:
+      - ./server/.env
+    environment:
+      # nginx is the single trusted proxy hop in front of the API.
+      TRUST_PROXY: "1"
+    # No host port: only the web service can reach it over the internal network.
+    expose:
+      - "8080"
+    volumes:
+      # Persist the JSONL message backup across container rebuilds.
+      - contact-data:/data
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  contact-data:

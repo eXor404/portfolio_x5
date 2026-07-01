@@ -30,6 +30,11 @@ export default function Footer() {
           borderTop: '1px solid var(--line-0)', paddingTop: 24,
         }}>
           <span>© 2026 Maurice Däppen</span>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 16 }}>
+            <Link to="/privacy" className="ul-link" style={{ color: 'var(--ink-2)' }}>Privacy</Link>
+            <Link to="/imprint" className="ul-link" style={{ color: 'var(--ink-2)' }}>Imprint</Link>
+            <Link to="/terms" className="ul-link" style={{ color: 'var(--ink-2)' }}>Terms</Link>
+          </span>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--ok)' }} />
             Open to interesting work · Bern, CH

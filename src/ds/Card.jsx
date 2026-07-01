@@ -14,7 +14,7 @@ function Tick({ pos, color }) {
 }
 
 export default function Card({
-  children, variant = 'plain', interactive = false, cornerTicks = false, index, style = {}, ...rest
+  children, as: As = 'div', variant = 'plain', interactive = false, cornerTicks = false, index, style = {}, ...rest
 }) {
   const [hover, setHover] = useState(false);
   const palettes = {
@@ -27,7 +27,7 @@ export default function Card({
   const lifted = interactive && hover;
   const tickColor = variant === 'ink' ? 'var(--paper-1)' : 'var(--ink-0)';
   return (
-    <div
+    <As
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
@@ -48,6 +48,6 @@ export default function Card({
         }}>{index}</span>
       )}
       {children}
-    </div>
+    </As>
   );
 }

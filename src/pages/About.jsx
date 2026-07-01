@@ -31,7 +31,7 @@ export default function About() {
   return (
     <>
       <PageHeader
-        index="04" path="/about" title="About " accentWord="me."
+        index="03" path="/about" title="About " accentWord="me."
         lead="A fullstack and DevOps engineer who treats security as a design constraint, not an afterthought."
         meta={[['Based', 'Bern, CH'], ['Exp', '5+ yrs'], ['Status', 'Employed · open to interesting work']]}
       />

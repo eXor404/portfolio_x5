@@ -3,3 +3,12 @@ dist
 *.local
 .DS_Store
 .vite
+
+# Backend secrets & data — never commit
+server/.env
+server/.env.*
+!server/.env.example
+server/node_modules
+server/data
+data
+server/*.log

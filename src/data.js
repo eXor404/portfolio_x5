@@ -13,10 +13,9 @@ export const PROFILE = {
 /* Route table — drives the Nav, footer, and per-page <PageHeader> paths. */
 export const ROUTES = [
   { id: 'work', n: '01', label: 'Work', path: '/work' },
-  { id: 'writing', n: '02', label: 'Writing', path: '/writing' },
-  { id: 'experience', n: '03', label: 'Experience', path: '/experience' },
-  { id: 'about', n: '04', label: 'About', path: '/about' },
-  { id: 'contact', n: '05', label: 'Contact', path: '/contact' },
+  { id: 'experience', n: '02', label: 'Experience', path: '/experience' },
+  { id: 'about', n: '03', label: 'About', path: '/about' },
+  { id: 'contact', n: '04', label: 'Contact', path: '/contact' },
 ];
 
 export const PROJECTS = [
@@ -94,26 +93,10 @@ export const PROJECTS = [
   },
 ];
 
-export const ARTICLES = [
-  {
-    n: '01', date: '2026 · 04', read: '11 min',
-    title: 'Zero-trust without slowing the team down',
-    blurb: 'mTLS, OPA, and an identity-aware proxy — shipped across 40 services without turning every deploy into a security review.',
-    tags: ['Security', 'mTLS', 'OPA'],
-  },
-  {
-    n: '02', date: '2026 · 02', read: '8 min',
-    title: 'Hermetic builds with Nix: a field report',
-    blurb: 'What it actually took to make our CI reproducible bit-for-bit — and the sub-second cache hits that paid for the migration.',
-    tags: ['Nix', 'CI/CD', 'Rust'],
-  },
-  {
-    n: '03', date: '2025 · 11', read: '6 min',
-    title: 'Threat modeling as a daily habit',
-    blurb: 'STRIDE is not a quarterly workshop. Here is how I wired it into pull requests so the question "how does this break?" gets asked every time.',
-    tags: ['STRIDE', 'AppSec', 'Culture'],
-  },
-];
+/* Per-project case-study content for /work/:slug. Populated from repo
+   analysis: creative-but-true facts, overview, technical write-up,
+   highlights, refined stack, and the framed screenshot path. */
+export { PROJECT_DETAILS } from './projectDetails.js';
 
 /* Timeline entries group by org. A single-role org renders as one node; an org
    with multiple `roles` (e.g. a military career) stacks them on a nested spine,

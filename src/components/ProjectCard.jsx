@@ -1,12 +1,13 @@
 /* ProjectCard — featured variant spans wide with a spec rail + case-study
    button; compact variant is a 2-col grid cell with a spec footer. */
+import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { Card, Tag, SpecList, Button } from '../ds/index.js';
 
 export default function ProjectCard({ p, featured = false }) {
   return (
-    <Card variant={featured ? 'raised' : 'plain'} interactive cornerTicks index={p.n}
-      style={{ display: 'flex', flexDirection: 'column', gap: 16, gridColumn: featured ? '1 / -1' : 'auto' }}>
+    <Card as={Link} to={`/work/${p.slug}`} variant={featured ? 'raised' : 'plain'} interactive cornerTicks index={p.n}
+      style={{ display: 'flex', flexDirection: 'column', gap: 16, gridColumn: featured ? '1 / -1' : 'auto', textDecoration: 'none', color: 'inherit' }}>
       <div className={featured ? 'feat-card-inner' : ''} style={{ display: featured ? 'grid' : 'block', gridTemplateColumns: featured ? '1.4fr 1fr' : '1fr', gap: 40 }}>
         <div>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--accent)', marginBottom: 10 }}>

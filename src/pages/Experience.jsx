@@ -54,7 +54,7 @@ export default function Experience() {
   return (
     <>
       <PageHeader
-        index="03" path="/experience" title="Timeline" accentWord="."
+        index="02" path="/experience" title="Timeline" accentWord="."
         lead="Full-stack software engineer based in Bern, working with Java, Quarkus, Angular, and much more. I like to support and mentor people, as a certified Berufsbildner and as a Sergeant."
         meta={[['Span', '2021 – Now'], ['Base', 'Bern, CH'], ['Mode', 'Hybrid · On-site']]}
       />
