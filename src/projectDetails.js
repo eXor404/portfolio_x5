@@ -7,7 +7,7 @@ export const PROJECT_DETAILS = {
     "facts": [
       {
         "label": "Lines of code",
-        "value": "6.3K"
+        "value": "~6.3k"
       },
       {
         "label": "Source files",
@@ -80,7 +80,7 @@ export const PROJECT_DETAILS = {
     "facts": [
       {
         "label": "Lines of code",
-        "value": "~3,300 JS"
+        "value": "~3.3k"
       },
       {
         "label": "Source files",
@@ -148,7 +148,7 @@ export const PROJECT_DETAILS = {
     "facts": [
       {
         "label": "Lines of code",
-        "value": "~6,500"
+        "value": "~6.5k"
       },
       {
         "label": "Source files",
@@ -221,7 +221,7 @@ export const PROJECT_DETAILS = {
     "facts": [
       {
         "label": "Lines of code",
-        "value": "~1,200"
+        "value": "~1.2k"
       },
       {
         "label": "Dependencies",
@@ -289,8 +289,8 @@ export const PROJECT_DETAILS = {
   "git-art": {
     "facts": [
       {
-        "label": "Source",
-        "value": "1 HTML file, 774 lines"
+        "label": "Lines of code",
+        "value": "~0.8k"
       },
       {
         "label": "Runtime dependencies",
@@ -358,8 +358,8 @@ export const PROJECT_DETAILS = {
   "mdslides": {
     "facts": [
       {
-        "label": "Engine size",
-        "value": "~1,670 lines"
+        "label": "Lines of code",
+        "value": "~1.7k"
       },
       {
         "label": "Runtime deps",
@@ -430,7 +430,7 @@ export const PROJECT_DETAILS = {
     "facts": [
       {
         "label": "Lines of code",
-        "value": "8,164"
+        "value": "~8.2k"
       },
       {
         "label": "Source files",
@@ -501,7 +501,7 @@ export const PROJECT_DETAILS = {
     "facts": [
       {
         "label": "Lines of code",
-        "value": "~2,700"
+        "value": "~2.7k"
       },
       {
         "label": "Solver dependencies",
@@ -574,7 +574,7 @@ export const PROJECT_DETAILS = {
     "facts": [
       {
         "label": "Lines of code",
-        "value": "2,800"
+        "value": "~2.8k"
       },
       {
         "label": "Source files",
@@ -646,7 +646,7 @@ export const PROJECT_DETAILS = {
     "facts": [
       {
         "label": "Lines of code",
-        "value": "~1,330"
+        "value": "~1.3k"
       },
       {
         "label": "Source files",
@@ -713,6 +713,10 @@ export const PROJECT_DETAILS = {
   },
   "server": {
     "facts": [
+      {
+        "label": "Lines of code",
+        "value": "~0.4k"
+      },
       {
         "label": "Source files",
         "value": "6"
@@ -781,7 +785,7 @@ export const PROJECT_DETAILS = {
     "facts": [
       {
         "label": "Lines of code",
-        "value": "~3,300"
+        "value": "~3.3k"
       },
       {
         "label": "Source files",

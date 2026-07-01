@@ -37,8 +37,8 @@ export default function Hero() {
                   {PROFILE.tagline}
                 </p>
                 <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-                  <Link to="/work">
-                    <Button variant="accent" size="lg" iconRight={<ArrowRight size={18} />}>View selected work</Button>
+                  <Link to="/about">
+                    <Button variant="accent" size="lg" iconRight={<ArrowRight size={18} />}>Read more about me</Button>
                   </Link>
                   <Link to="/contact">
                     <Button variant="outline" size="lg" mono>Get in touch</Button>

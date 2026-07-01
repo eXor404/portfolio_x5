@@ -3,10 +3,39 @@
    framed screenshot, a creative fact rail, the overview + technical write-up,
    feature highlights, the real stack, and prev/next nav. Content comes from
    PROJECTS (card data) + PROJECT_DETAILS (per-project research) in data.js. */
+import { useEffect, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { PROJECTS, PROJECT_DETAILS } from '../data.js';
 import { Tag } from '../ds/index.js';
+
+/* True while the write-up is stacked (aside drops below the body at 860px). */
+function useStacked() {
+  const [stacked, setStacked] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 860px)');
+    const sync = () => setStacked(mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
+  return stacked;
+}
+
+/* Stack chip list — rendered inline after the overview on phones, and in the
+   sticky side rail on desktop. */
+function StackBlock({ tags, style }) {
+  return (
+    <div style={style}>
+      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--ink-3)', marginBottom: 18, paddingBottom: 12, borderBottom: '1.5px solid var(--ink-0)' }}>
+        Stack
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+        {tags.map((t) => <Tag key={t} size="sm">{t}</Tag>)}
+      </div>
+    </div>
+  );
+}
 
 /* macOS-style window chrome around a screenshot. Traffic lights are the one
    rounded element in an otherwise square system. */
@@ -62,8 +91,10 @@ export default function ProjectDetail() {
   const idx = PROJECTS.findIndex((p) => p.slug === slug);
   if (idx === -1) return <Navigate to="/work" replace />;
 
+  const stacked = useStacked();
   const p = PROJECTS[idx];
   const d = PROJECT_DETAILS[slug] || {};
+  const stack = d.stack || p.tags;
   const prev = PROJECTS[(idx - 1 + PROJECTS.length) % PROJECTS.length];
   const next = PROJECTS[(idx + 1) % PROJECTS.length];
 
@@ -125,6 +156,9 @@ export default function ProjectDetail() {
                 {d.overview}
               </p>
             )}
+            {/* On phones the stack rides up here, right after the intro, instead
+                of dropping to the bottom with the rest of the side rail. */}
+            {stacked && <StackBlock tags={stack} style={{ marginBottom: 40 }} />}
             {d.technical && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 22, maxWidth: '64ch' }}>
                 {d.technical.map((para, i) => (
@@ -151,14 +185,9 @@ export default function ProjectDetail() {
                 </div>
               </div>
             )}
-            <div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--ink-3)', marginBottom: 18, paddingBottom: 12, borderBottom: '1.5px solid var(--ink-0)' }}>
-                Stack
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                {(d.stack || p.tags).map((t) => <Tag key={t} size="sm">{t}</Tag>)}
-              </div>
-            </div>
+            {/* Desktop keeps the stack in the sticky rail; on phones it has
+                already been rendered inline after the overview above. */}
+            {!stacked && <StackBlock tags={stack} />}
           </aside>
         </div>
       </section>
