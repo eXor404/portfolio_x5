@@ -1,0 +1,74 @@
+name: Deploy
+
+# Build the web + contact-api images, publish them to ghcr.io, then roll them
+# out on the server over SSH. Triggered by pushing a version tag, e.g.:
+#   git tag v1.0.0 && git push origin v1.0.0
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  WEB_IMAGE: ghcr.io/exor404/portfolio_x5-web
+  API_IMAGE: ghcr.io/exor404/portfolio_x5-contact-api
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to ghcr.io
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build & push web image
+        run: |
+          docker build \
+            --tag ${{ env.WEB_IMAGE }}:${{ github.ref_name }} \
+            --tag ${{ env.WEB_IMAGE }}:latest \
+            .
+          docker push ${{ env.WEB_IMAGE }}:${{ github.ref_name }}
+          docker push ${{ env.WEB_IMAGE }}:latest
+
+      - name: Build & push contact-api image
+        run: |
+          docker build \
+            --tag ${{ env.API_IMAGE }}:${{ github.ref_name }} \
+            --tag ${{ env.API_IMAGE }}:latest \
+            ./server
+          docker push ${{ env.API_IMAGE }}:${{ github.ref_name }}
+          docker push ${{ env.API_IMAGE }}:latest
+
+      - name: Deploy on server
+        uses: appleboy/ssh-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          TAG: ${{ github.ref_name }}
+          DEPLOY_PATH: ${{ secrets.SERVER_DEPLOY_PATH }}
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          envs: GITHUB_TOKEN,GITHUB_ACTOR,TAG,DEPLOY_PATH
+          script: |
+            set -eu
+            REPO="https://x-access-token:${GITHUB_TOKEN}@github.com/eXor404/portfolio_x5.git"
+            if [ ! -d "${DEPLOY_PATH}/.git" ]; then
+              git clone "${REPO}" "${DEPLOY_PATH}"
+            fi
+            cd "${DEPLOY_PATH}"
+            git fetch "${REPO}" main --tags
+            git checkout "${TAG}"
+            # Pin the compose images to this tag. server/.env (SMTP + secrets)
+            # is provisioned once on the server and is NOT touched here.
+            echo "PORTFOLIO_VERSION=${TAG}" > .env
+            echo "${GITHUB_TOKEN}" | docker login ghcr.io -u "${GITHUB_ACTOR}" --password-stdin
+            docker compose pull
+            docker compose up -d --remove-orphans
+            docker image prune -f
+            docker logout ghcr.io

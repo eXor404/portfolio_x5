@@ -1,14 +1,24 @@
-# Full portfolio stack. Run: docker compose up -d --build
+# Full portfolio stack.
 #   web         nginx serving the built SPA + reverse-proxying /api
 #   contact-api the secure contact backend (internal network only)
-# Secrets for the API come from server/.env (copy from server/.env.example).
+#
+# Deploy: push a v* tag -> .github/workflows/deploy.yml builds+pushes images to
+# ghcr.io and runs `docker compose pull && up -d` on the server, pinned to the
+# tag via PORTFOLIO_VERSION. `build:` is kept so local dev still works with
+# `docker compose up -d --build`.
+#
+# The site binds to loopback only; Caddy terminates TLS and reverse-proxies to
+# 127.0.0.1:${WEB_PORT}. Secrets for the API come from server/.env (copy from
+# server/.env.example) — this file must exist on the server.
 services:
   web:
+    image: ghcr.io/exor404/portfolio_x5-web:${PORTFOLIO_VERSION:-latest}
     build: .
     restart: unless-stopped
     ports:
-      # Expose the site here; put a TLS-terminating proxy in front in production.
-      - "${WEB_PORT:-8080}:80"
+      # Loopback only — Caddy is the public entrypoint. WEB_PORT must be free on
+      # the host (3008 by default; see the server repo's Caddyfile for the map).
+      - "127.0.0.1:${WEB_PORT:-3008}:80"
     depends_on:
       - contact-api
     security_opt:
@@ -20,6 +30,7 @@ services:
         max-file: "3"
 
   contact-api:
+    image: ghcr.io/exor404/portfolio_x5-contact-api:${PORTFOLIO_VERSION:-latest}
     build: ./server
     restart: unless-stopped
     env_file:

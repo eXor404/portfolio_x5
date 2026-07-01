@@ -1,0 +1,25 @@
+# Keep the frontend build context small and secret-free.
+# The Dockerfile does `COPY . .`, so anything not needed to build the SPA
+# should be excluded here.
+.git
+.gitignore
+node_modules
+dist
+.vite
+
+# The backend has its own build context (./server) — never bundle it, and
+# especially not its secrets, into the frontend image.
+server
+
+# Env & local files
+.env
+.env.*
+*.local
+
+# Editor / OS cruft
+.DS_Store
+*.log
+
+# Tooling / docs not needed at build time
+.claude
+README.md
