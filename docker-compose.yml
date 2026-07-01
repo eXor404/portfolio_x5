@@ -8,8 +8,9 @@
 # `docker compose up -d --build`.
 #
 # The site binds to loopback only; Caddy terminates TLS and reverse-proxies to
-# 127.0.0.1:${WEB_PORT}. Secrets for the API come from server/.env (copy from
-# server/.env.example) — this file must exist on the server.
+# 127.0.0.1:${WEB_PORT}. In production server/.env is rendered by the deploy
+# workflow from GitHub Secrets/Variables; for local dev, copy server/.env.example
+# to server/.env.
 services:
   web:
     image: ghcr.io/exor404/portfolio_x5-web:${PORTFOLIO_VERSION:-latest}

@@ -50,11 +50,23 @@ jobs:
           GITHUB_ACTOR: ${{ github.actor }}
           TAG: ${{ github.ref_name }}
           DEPLOY_PATH: ${{ secrets.SERVER_DEPLOY_PATH }}
+          # --- contact-api config: non-sensitive -> Variables, credentials/crypto -> Secrets ---
+          ALLOWED_ORIGINS: ${{ vars.ALLOWED_ORIGINS || 'https://daeppen.dev,https://www.daeppen.dev' }}
+          SMTP_HOST: ${{ vars.SMTP_HOST }}
+          SMTP_PORT: ${{ vars.SMTP_PORT || '587' }}
+          SMTP_SECURE: ${{ vars.SMTP_SECURE || 'false' }}
+          MAIL_FROM: ${{ vars.MAIL_FROM || 'Portfolio <portfolio@daeppen.dev>' }}
+          MAIL_TO: ${{ vars.MAIL_TO }}
+          RETENTION_DAYS: ${{ vars.RETENTION_DAYS || '180' }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          IP_SALT: ${{ secrets.IP_SALT }}
+          FORM_TOKEN_SECRET: ${{ secrets.FORM_TOKEN_SECRET }}
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          envs: GITHUB_TOKEN,GITHUB_ACTOR,TAG,DEPLOY_PATH
+          envs: GITHUB_TOKEN,GITHUB_ACTOR,TAG,DEPLOY_PATH,ALLOWED_ORIGINS,SMTP_HOST,SMTP_PORT,SMTP_SECURE,MAIL_FROM,MAIL_TO,RETENTION_DAYS,SMTP_USER,SMTP_PASS,IP_SALT,FORM_TOKEN_SECRET
           script: |
             set -eu
             REPO="https://x-access-token:${GITHUB_TOKEN}@github.com/eXor404/portfolio_x5.git"
@@ -64,9 +76,29 @@ jobs:
             cd "${DEPLOY_PATH}"
             git fetch "${REPO}" main --tags
             git checkout "${TAG}"
-            # Pin the compose images to this tag. server/.env (SMTP + secrets)
-            # is provisioned once on the server and is NOT touched here.
+            # Pin the compose images to this tag.
             echo "PORTFOLIO_VERSION=${TAG}" > .env
+            # Render the contact-api env file (0600) from GitHub Secrets/Variables,
+            # so no secret is ever committed and every deploy is reproducible.
+            rm -f server/.env
+            umask 077
+            {
+              echo "NODE_ENV=production"
+              echo "PORT=8080"
+              echo "TRUST_PROXY=1"
+              echo "ALLOWED_ORIGINS=${ALLOWED_ORIGINS}"
+              echo "SMTP_HOST=${SMTP_HOST:-}"
+              echo "SMTP_PORT=${SMTP_PORT}"
+              echo "SMTP_SECURE=${SMTP_SECURE}"
+              echo "SMTP_USER=${SMTP_USER:-}"
+              echo "SMTP_PASS=${SMTP_PASS:-}"
+              echo "MAIL_FROM=${MAIL_FROM}"
+              echo "MAIL_TO=${MAIL_TO:-}"
+              echo "IP_SALT=${IP_SALT:-}"
+              echo "FORM_TOKEN_SECRET=${FORM_TOKEN_SECRET:-}"
+              echo "STORE_FILE=/data/messages.jsonl"
+              echo "RETENTION_DAYS=${RETENTION_DAYS}"
+            } > server/.env
             echo "${GITHUB_TOKEN}" | docker login ghcr.io -u "${GITHUB_ACTOR}" --password-stdin
             docker compose pull
             docker compose up -d --remove-orphans
